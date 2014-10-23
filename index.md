@@ -1,15 +1,12 @@
 ---
 layout: page
-title : Ali Neishabouri
-tagline : PhD student
+title: Welcome
+tagline : Neuroscientist
 analytics : false
 ---
 {% include JB/setup %}
-## About
-Find out more [about]({% for page in site.pages %}{% if page.title == "About"%}{{ BASE_PATH }}{{ page.url }}{% endif %}{% endfor %}) who I am and how to contact me.
-
-## Research
-I am a PhD student in the [Department of Bioengineering](http://www3.imperial.ac.uk/bioengineering) at the [Imperial college London](http://www3.imperial.ac.uk/). I am part of the [Brain and Behaviour lab](http://www.faisallab.com).
+<p><img src ="{{ BASE_PATH }}/assets/images/googleplusprofile.jpg" class="inset right" style="margin-top: -3em;" title="Ali Neishabouri" alt="Photo" width="120px" /></p>
+I'm Ali Neishabouri, a research associate in the [Department of Computing](http://www3.imperial.ac.uk/computing) at the [Imperial college London](http://www3.imperial.ac.uk/). I am part of the [Brain and Behaviour lab](http://www.faisallab.com).
 
 I investigate the basic biophysical constraints faced by axons, and how these constraints have shaped the trade-offs made by neurons. I investigate these tradeoffs using stochastic simulations based on biophysical data found in litterature. The simulations are carried on using Modigliani, our in-house stochastic simulator.
 
