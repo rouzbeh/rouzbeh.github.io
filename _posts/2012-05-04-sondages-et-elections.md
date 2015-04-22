@@ -14,30 +14,30 @@ tags: [French, Mathematics]
 <img src ="{{ BASE_PATH }}/assets/images/plot2.jpg" alt="Courbe de probabilité" align="center" title="La distribution de probabilités de la vraie popularité de Sarkozy" class="img"/>
 <p>La cloche est plus large, traduisant une plus grande incertitude. La probabilité de victoire de Sarkozy serait alors de plus de 30%. Autant dire que le sondage ne sert pas à grande chose. Au passage, remarquez que même avec 1000 echantillons, c’est assez ridicule de prétendre mesurer des variations de 0,5%; à moins que les sondeurs connaissent des algorithmes relevant de la magie.</p>
 <p>Nous (<a href="http://www.faisallab.com">Aldo Faisal</a> et moi) avons mis au point un petit script <a href="http://www.gnu.org/software/octave/">octave</a> (ou Matlab) qui nous permet de visualiser la distribution de probabilité de la popularité réélle d’un candidat en fonction de sa popularité dans un échantillon donné. Il suffit de renseigner la taille de l’échantillon utilise pour le sondage (en general entre 500 et 1000) et le résultat de ce sondage (la proportion d’électeurs déclarant voter pour Sarkozy, aux alentours de 47%) et lancer le script.</p>
-{% highlight matlab %}
-clear
-close all
 
-echantillon = 500;
-observation = 0.475
+	clear
+	close all
 
-p=[0:0.001:1];
+	echantillon = 500;
+	observation = 0.475
 
-figure,
-votesPolledSarko = round(observation*echantillon)
-totalPolled = echantillon;
-for ll=1:length(p)
-  pSarko(ll) = binopdf(votesPolledSarko,totalPolled,p(ll));
-end
+	p=[0:0.001:1];
 
-plot(p*100,pSarko/sum(pSarko),'-')
-probOfSarkoWin = sum(pSarko(floor(end/2):end))
-axis tight
-t = sprintf('Prob that Sarkzy may win is %f.'...
-  probOfSarkoWin);
-title(t)
-xlabel('Final score')
-ylabel('Probability')
+	figure,
+	votesPolledSarko = round(observation*echantillon)
+	totalPolled = echantillon;
+	for ll=1:length(p)
+	  pSarko(ll) = binopdf(votesPolledSarko,totalPolled,p(ll));
+	end
 
-{% endhighlight %}
+	plot(p*100,pSarko/sum(pSarko),'-')
+	probOfSarkoWin = sum(pSarko(floor(end/2):end))
+	axis tight
+	t = sprintf('Prob that Sarkzy may win is %f.'...
+	  probOfSarkoWin);
+	title(t)
+	xlabel('Final score')
+	ylabel('Probability')
+
 <p>Vous pouvez utiliser ce script pour générer ces courbes, ou renseigner d’autres données. Il est dans le domaine public.</p>
+

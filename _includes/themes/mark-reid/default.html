@@ -6,7 +6,6 @@
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
    <title>{{ page.title }} &larr; {{ page.top }}</title>
    <meta name="author" content="{{ site.author.name }}" />
-
    <link rel="start" href="{{ HOME_PATH }}" />
 
 	{% if page.keywords %}
@@ -25,7 +24,11 @@
 
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/screen.css" type="text/css" />
-
+   <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+   <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+   <script>hljs.initHighlightingOnLoad();</script>
+   <link rel="stylesheet" href="/pygments.css">
+   {% include org.html %}
 </head>
 <body id="{{ page.section }}">
 <div id="site">
@@ -37,10 +40,10 @@
     </h1>
     <ul class="nav">
       <li><a class="home" href="{{ HOME_PATH }}">Home</a></li>
-      <li><a  href="{{ BASE_PATH }}/archive.html">Archive</a></li>
-      <li><a  href="{{ BASE_PATH }}/pages.html">Pages</a></li>
+      <li><a  href="{{ BASE_PATH }}/info.html">Info</a></li>
+      <!--<li><a  href="{{ BASE_PATH }}/pages.html">Pages</a></li>
       <li><a  href="{{ BASE_PATH }}/categories.html">Categories</a></li>
-      <li><a  href="{{ BASE_PATH }}/tags.html">Tags</a></li>
+      <li><a  href="{{ BASE_PATH }}/tags.html">Tags</a></li>-->
     </ul>
   </div>
 
