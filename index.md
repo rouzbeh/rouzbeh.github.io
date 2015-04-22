@@ -10,8 +10,6 @@ I'm Ali Neishabouri, a research associate in the [Department of Computing](http:
 
 I investigate the basic biophysical constraints faced by axons, and how these constraints have shaped the trade-offs made by neurons. I investigate these tradeoffs using stochastic simulations based on biophysical data found in litterature. The simulations are carried on using [Modigliani](http://www.modigliani.co.uk), our in-house stochastic simulator.
 
-My publications can be found [here](publications.html).
-
 {% if site.posts.size != 0 %}
 ## Blog
 <ul class="posts">
