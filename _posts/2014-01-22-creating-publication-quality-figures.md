@@ -4,12 +4,12 @@ title: "Creating publication quality figures"
 description: ""
 category: Tips
 redirect-from:
-  - /Tips/2014/01/22/creating-publication-quality-figures/
+- /Tips/2014/01/22/creating-publication-quality-figures/
+excerpt_separator: <!--more-->
 tags: [Matlab, Latex, Tikz, Figure]
 ---
 {% include JB/setup %}
 <div id="content">
-<p>
 One of the most annoying parts of writing publishable research
 material is making figures. Although it may seem rather simple to make
 a figures from, say, a spreadsheet program, systematic generation of
@@ -17,7 +17,7 @@ high-quality figures is not that easy. I decided to write this post as
 a guide to my fellow lab members, and thought it may be useful to
 other researchers as well. The system described here is mainly based
 on the excellent <a href="https://github.com/nschloe/matlab2tikz">matlab2tikz</a> package.
-</p>
+
 <div id="outline-container-sec-1" class="outline-2">
 <h3 id="sec-1"><span class="section-number-2">1</span> How hard is it to make a nice figure out of Matlab?</h3>
 <div class="outline-text-2" id="text-1">

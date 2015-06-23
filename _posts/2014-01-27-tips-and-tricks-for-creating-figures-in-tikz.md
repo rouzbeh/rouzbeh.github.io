@@ -4,17 +4,19 @@ title: "Tips and tricks for creating figures in tikz"
 description: ""
 category: Tips
 redirect_from:
-  - /Tips/2014/01/27/tips-and-tricks-for-creating-figures-in-tikz/
+- /Tips/2014/01/27/tips-and-tricks-for-creating-figures-in-tikz/
+excerpt_separator: <!--more-->
+
 tags: [Matlab, Latex, Tikz, Figure]
 ---
 {% include JB/setup %}
-
 This post is a continuation of
 [creating publication quality figures]({{ BASE_PATH }}{% post_url 2014-01-22-creating-publication-quality-figures %}). As you might imagine, the process of creating figures using
 <i>matlab2tikz</i> is not always as smooth as in the case of simple
 figures. I have come across a few bugs, and here I will try to present
 simple workarounds for most cases.
 
+<!--more-->
 <div id="outline-container-sec-1" class="outline-2">
 <h3 id="sec-1"><span class="section-number-2">1</span> Bar graphs</h3>
 <div class="outline-text-2" id="text-1">

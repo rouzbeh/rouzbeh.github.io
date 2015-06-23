@@ -6,7 +6,14 @@ category: Mathematics
 tags: [French, Mathematics]
 ---
 {% include JB/setup %}
-<p>À chaque élection, la question des sondages, et de la confiance qu’il faut leur accorder est une des questions centrale. Nous savons qu’il peuvent se tromper, et nous avons en tête le chiffre des 3% pour un échantillon de 1000 individus, d’après un article paru dans le monde. Mais d’où vient ce chiffre, et que dire des échantillons de 500 (comme dans les sondages faits juste après le débat) ou moins (par exemple ceux portant sur les reports de voix).</p>
+À chaque élection, la question des sondages, et de la confiance
+qu’il faut leur accorder est une des questions centrale. Nous savons
+qu’il peuvent se tromper, et nous avons en tête le chiffre des 3% pour
+un échantillon de 1000 individus, d’après un article paru dans le
+monde. Mais d’où vient ce chiffre, et que dire des échantillons de 500
+(comme dans les sondages faits juste après le débat) ou moins (par
+exemple ceux portant sur les reports de voix).
+
 <p>On peut répondre à ces questions sans faire de calculs compliqués grâce à des simulations. En utilisant les données du <a href="http://elections.lefigaro.fr/presidentielle-2012/2012/05/04/01039-20120504ARTFIG00382-sondages-l-ecart-entre-sarkozy-et-hollande-se-reduit.php">dernier sondage</a> (47.5% pour Sarkozy) et avec un échantillon de 1000 personnes, voici ce que l’on obtient:</p>
 <img src ="{{ BASE_PATH }}/assets/images/plot.jpg" alt="Courbe de probabilité" align="center" title="La distribution de probabilités de la vraie popularité de Sarkozy" class="img"/>
 <p>Cette courbe montre la probabilité des différents scores possibles le jour du scrutin. Le résultat le plus probable est bien entendu celui donné par le sondage, mais les résultats proches de celui-ci sont raisonnablement possibles. Cette cloche représente le degré de confiance qu’on peut accorder à ce sondage. Plus l’échantillon est important, moins cette cloche sera large.</p>

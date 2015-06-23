@@ -6,8 +6,15 @@ category: Mathematics
 tags: [English, Statistics]
 ---
 {% include JB/setup %}
+Last weekend, one of my friends and I found ourselves waiting near the
+exit of dressing rooms in a busy London clothes shop. In that shop,
+anyone going in the dressing rooms was given a small plastic panel
+with a number corresponding to the number of articles of clothing she
+wanted to test. Each customer was only allowed to bring 6 articles
+inside. At the exit, an employee takes the small piece of plastic
+back, along with all unwanted items which will then be put back on
+shelves and racks inside the store.
 
-<p>Last weekend, one of my friends and I found ourselves waiting near the exit of dressing rooms in a busy London clothes shop. In that shop, anyone going in the dressing rooms was given a small plastic panel with a number corresponding to the number of articles of clothing she wanted to test. Each customer was only allowed to bring 6 articles inside. At the exit, an employee takes the small piece of plastic back, along with all unwanted items which will then be put back on shelves and racks inside the store. 
 As we were standing right next to that lady, we started to notice that very few customers would actually buy anything. We saw a lot of people coming out of the dressing room with 4,5 or even 6 articles of clothing, and give them all back. Being bored, we thought it would be a good idea to actually record this data, and analyse them.</p>
 <p>We took notes of how many items were tried buy each person, and how many were kept. In the approximately 20 minutes we spent there, we saw 75 customers come out of dressing rooms. Here is the histogram of the number of items they had brought in (according to the small plastic panel).</p>
 <img src ="{{ BASE_PATH }}/assets/images/dressing/histin.png" alt="Histogram" align="center" width="100%" title="Histogram of the number of articles taken inside" class="img"/>
