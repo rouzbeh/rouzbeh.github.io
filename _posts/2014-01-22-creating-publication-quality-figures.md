@@ -3,6 +3,8 @@ layout: post
 title: "Creating publication quality figures"
 description: ""
 category: Tips
+redirect-from:
+  - /Tips/2014/01/22/creating-publication-quality-figures/
 tags: [Matlab, Latex, Tikz, Figure]
 ---
 {% include JB/setup %}
@@ -17,7 +19,7 @@ other researchers as well. The system described here is mainly based
 on the excellent <a href="https://github.com/nschloe/matlab2tikz">matlab2tikz</a> package.
 </p>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> How hard is it to make a nice figure out of Matlab?</h2>
+<h3 id="sec-1"><span class="section-number-2">1</span> How hard is it to make a nice figure out of Matlab?</h3>
 <div class="outline-text-2" id="text-1">
 <p>
 I am going to argue that the answer is <b>very hard</b>. Now of course
@@ -92,7 +94,7 @@ of my posters in this way, except that I used vector graphics.
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Vector graphics</h2>
+<h3 id="sec-2"><span class="section-number-2">2</span> Vector graphics</h3>
 <div class="outline-text-2" id="text-2">
 <p>
 So far, we used raster formats to save our figure. In raster formats
@@ -163,7 +165,7 @@ figure and including tikz figures inside LaTeX documents.
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Making figures with tikz</h2>
+<h3 id="sec-3"><span class="section-number-2">3</span> Making figures with tikz</h3>
 <div class="outline-text-2" id="text-3">
 <p>
 Here is the basic code to generate and export our figure to tikz.
@@ -290,7 +292,7 @@ format, there is no jaggedness or steps.
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Inside a LaTeX document</h2>
+<h3 id="sec-4"><span class="section-number-2">4</span> Inside a LaTeX document</h3>
 <div class="outline-text-2" id="text-4">
 <p>
 The advantages of this workflow, even though the generated figures are

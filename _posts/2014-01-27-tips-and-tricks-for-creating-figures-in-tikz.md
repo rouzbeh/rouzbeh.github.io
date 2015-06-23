@@ -3,6 +3,8 @@ layout: post
 title: "Tips and tricks for creating figures in tikz"
 description: ""
 category: Tips
+redirect_from:
+  - /Tips/2014/01/27/tips-and-tricks-for-creating-figures-in-tikz/
 tags: [Matlab, Latex, Tikz, Figure]
 ---
 {% include JB/setup %}
@@ -14,7 +16,7 @@ figures. I have come across a few bugs, and here I will try to present
 simple workarounds for most cases.
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Bar graphs</h2>
+<h3 id="sec-1"><span class="section-number-2">1</span> Bar graphs</h3>
 <div class="outline-text-2" id="text-1">
 <p>
 Bar graphs generated using different commands are treated differently.
@@ -68,8 +70,8 @@ matlab2tikz('hist_bar.tikz', 'showInfo', false, ...
 
 So that we get the expected figure: <img src="{{ BASE_PATH }}/assets/images/tikz2/hist_bar.png" alt="hist_bar.png" width="600px"
 /> </div> </div>
-<h2 id="sec-2"><span class="section-number-2">2</span> Figure
-alignment</h2>
+<h3 id="sec-2"><span class="section-number-2">2</span> Figure
+alignment</h3>
 
 The width and height variables set when running matlab2tikz refer to
 the width and height of each axis, and not the width and height of the
@@ -118,7 +120,7 @@ figures:
 </p>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Subfigures</h2>
+<h3 id="sec-3"><span class="section-number-2">3</span> Subfigures</h3>
 <div class="outline-text-2" id="text-3">
 <p>
 There are two ways to generate subfigure using this method.
@@ -163,7 +165,7 @@ results in:
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Cache generated figures</h2>
+<h3 id="sec-4"><span class="section-number-2">4</span> Cache generated figures</h3>
 <div class="outline-text-2" id="text-4">
 <p>
 Generating figures from tikz files is a relatively expensive (read

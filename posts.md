@@ -1,19 +1,29 @@
+---
+layout: default
+title: "Blog posts"
+description: ""
+---
+{% include JB/setup %}
+
+{% assign post = site.posts.first %}
+{% assign page = site.posts.first %}
+{% assign content = post.content %}
+
 <div class="page-header">
   <h1>Blog posts</h1>
 </div>
-
 <div class="col-xs-4 pagination-centered">
   <ul class="posts">
     {% for post in site.posts %}
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
-</div>
+  </div>
 
 <div class="col-xs-8">
-  <h2>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h2>
+  <h2>{{ post.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h2>
   <div class="date">
-    {% if page.date %}<span>{{ page.date | date_to_long_string }}</span>{% endif %}
+    <span>{{ post.date | date_to_long_string }}</span>
   </div>
   <div class="content">
     {{ content }}
@@ -52,4 +62,5 @@
     <hr>
     {% include JB/comments %}
 </div>
+
 
