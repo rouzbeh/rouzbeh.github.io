@@ -18,6 +18,7 @@ a guide to my fellow lab members, and thought it may be useful to
 other researchers as well. The system described here is mainly based
 on the excellent <a href="https://github.com/nschloe/matlab2tikz">matlab2tikz</a> package.
 
+<!--more-->
 <div id="outline-container-sec-1" class="outline-2">
 <h3 id="sec-1"><span class="section-number-2">1</span> How hard is it to make a nice figure out of Matlab?</h3>
 <div class="outline-text-2" id="text-1">
@@ -153,7 +154,7 @@ resized the lines, points, and any text in the figure. In the last
 figure, the line is way too thick. This means that the figures need to
 be created at the right size inside Matlab, before being exported.
 This means that figures can not be made once, and used for different
-posters/papers/etc. 
+posters/papers/etc.
 </p>
 
 <p>
@@ -287,7 +288,7 @@ we divide the height by 2, we get the following <a href="{{ BASE_PATH }}/assets/
 <p>
 The width of the line, the shape and the placement of text labels are
 all preserved perfectly, and of course, the pdf being a vectorial
-format, there is no jaggedness or steps. 
+format, there is no jaggedness or steps.
 </p>
 </div>
 </div>
@@ -428,4 +429,3 @@ ticks.
 </div>
 </div>
 </div>
-
