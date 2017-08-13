@@ -3,8 +3,12 @@
 permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-safe: true
-highlighter: pygments
+safe: false
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
@@ -23,7 +27,27 @@ author : Ali Neishabouri
 #
 production_url : http://neishabouri.net
 
-gems: [jekyll-redirect-from]
+gems: [jekyll/scholar]
+
+scholar:
+  style: apa
+  locale: en
+
+  sort_by: year
+  order: descending
+
+  source: ./_bibliography
+  bibliography: references.bib
+  bibliography_template: bib
+
+  replace_strings: true
+  join_strings:    true
+
+  details_dir:    bibliography
+  details_layout: bibtex.html
+  details_link:   Details
+
+  query: "@*"
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
