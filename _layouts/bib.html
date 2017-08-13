@@ -1,0 +1,28 @@
+---
+---
+<div class="row">
+  {% if entry.abstract %}
+  <div class="col-md-6">
+    {% else %}
+    <div class="col-md-12">
+      {% endif %}
+<h4>{{ entry.title }} <small>{{ entry.month | capitalize }} {{ entry.year }}</small></h4>
+<b>{{ entry.author }}</b><br/>
+{% if entry.journal %}
+{{ entry.journal }}<br/>
+{% else if entry.booktitle %}
+<i><b>{{ entry.booktitle }}</b></i><br/>
+{{ entry.address }}<br/>
+{% endif %}
+{% if entry.doi %}
+DOI : <a href="http://doi.org/{{ entry.doi }}">{{ entry.doi }}</a><br/>
+{% endif %}
+{% if entry.url %}
+<a href="{{ entry.url }}">Link to paper</a><br/>
+{% endif %}
+</div>
+{% if entry.abstract %}
+<h5>Abstract</h5>
+<p>{{ entry.abstract }}</p>
+{% endif %}
+</div>
