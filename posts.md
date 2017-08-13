@@ -2,6 +2,9 @@
 layout: page
 title: "Blog posts"
 description: ""
+group: navigation
+icon: fa-quote-right
+pageorder: 3
 ---
 {% include JB/setup %}
 {% for post in site.posts %}
