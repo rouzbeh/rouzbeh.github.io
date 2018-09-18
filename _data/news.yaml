@@ -1,7 +1,32 @@
+- date : 01 January 2018
+  title: Consulting for Quematech
+  body : >-
+    I have started working with the wonderful people at <a
+    href="http://quematech.fr/">Quematech</a> on exciting machine learning
+    applications as a consultant.
+- date : 01 December 2017
+  title : It's alive
+  body: >-
+    <a
+    href="https://openclassrooms.com/fr/courses/4452741-decouvrez-les-librairies-python-pour-la-data-science">The
+    course</a> is online!
+- date : 15 September 2017
+  title: Python libraries for Data Science
+  body: >-
+    I have started creating an online course about Python libraries for Data
+    Science. The course is part of the Data Scientist path on <a
+    href="https://www.openclassrooms.com">OpenClassrooms</a>.
+- date : 21 October 2016
+  title: Spike.AI is created
+  body: >-
+    Along with a few brilliant people, we have started <a
+    href="http://www.spike.ai">Spike.AI</a>, a start-up aiming to deliver
+    machine learning as a service.
 - date : 15 January 2016
   title : Quit UCL
   body: >
-    I have quit my position as a post-doc at UCL, and decided to move back to France.
+    I have quit my position as a post-doc at UCL, and decided to move back to
+    France.
 - date : 27 July 2015
   title : Post-doc at UCL
   body : >
