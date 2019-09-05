@@ -30,8 +30,8 @@ pageorder: 4
   <a href="http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x267288B636FDE1E9">
     <i class="fa fa-lock"></i>
     Public key</a><br/>
-    <a href="http://twitter.com/Rou7_beh"><i class="fa fa-twitter"></i> @Rou7_beh</a><br/>
-    <a href="http://github.com/rouzbeh"><i class="fa fa-github"></i> @rouzbeh</a><br/>
+    <a href="http://twitter.com/Rou7_beh"><i class="fab fa-twitteri-square"></i> @Rou7_beh</a><br/>
+    <a href="http://github.com/rouzbeh"><i class="fab fa-github-square"></i> @rouzbeh</a><br/>
     <i class="fa fa-chevron-right"></i>
     <a href="https://www.researchgate.net/profile/Ali_Neishabouri">ResearchGate</a>
     <br/>
@@ -41,4 +41,3 @@ pageorder: 4
     </a>
   </p>
 I speak Persian, French and English.
-</div>

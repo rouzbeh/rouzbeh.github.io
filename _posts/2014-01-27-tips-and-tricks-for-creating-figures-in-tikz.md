@@ -39,7 +39,7 @@ matlab2tikz('hist.tikz', 'showInfo', false, ...
 The generated pdf figure will be somehow different from what we expect:
 ![hist.png]({{ BASE_PATH }}/assets/images/tikz2/hist.png){: .img-responsive }
 
-This is a documented [bug]("https://github.com/nschloe/matlab2tikz/issues/294") in matlab2tikz. In most cases, it can be mediated by using the *bar* command instead of the *hist* for drawing the figure:
+This is a documented [bug](https://github.com/nschloe/matlab2tikz/issues/294) in matlab2tikz. In most cases, it can be mediated by using the *bar* command instead of the *hist* for drawing the figure:
 
 ``` Matlab
 x=randn(1000,1);
@@ -99,7 +99,7 @@ We can generate a figure with subfigures in Matlab and save it as one figure.
 The other solution is to export each subfigure independently, and put them together in Matlab. I personally prefer this method
 because it gives me the highest amount of control over the presentation of subfigure, and allows fancy tricks such as referencing subfigures.
 
-An example of the second method is already shown in the previous section. We can improve it by making sure that subfigure numbers are written as required by most journals. I found the following command on [this great page]("http://www.latex-community.org/know-how/latex/51-latex-math-science/280-formatting-latex-articles-for-biology-journals").
+An example of the second method is already shown in the previous section. We can improve it by making sure that subfigure numbers are written as required by most journals. I found the following command on [this great page](http://www.latex-community.org/know-how/latex/51-latex-math-science/280-formatting-latex-articles-for-biology-journals).
 
 ```TeX
 % set package options
