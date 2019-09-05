@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.0"
+gem "jekyll"
 gem "jekyll-sitemap"
 gem "pygments.rb"
 gem "jekyll-scholar"
