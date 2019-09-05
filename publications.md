@@ -2,7 +2,7 @@
 layout: page
 title: Publications
 group: navigation
-icon: fa-newspaper-o
+icon: fa-newspaper
 pageorder: 2
 ---
 {% include JB/setup %}
