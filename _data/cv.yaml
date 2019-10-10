@@ -9,7 +9,7 @@ items :
   title: Research Engineer
   place: Mipsology
   data: Since 09/2019
-  location: Faris, France
+  location: Paris, France
   description: >-
     In the applied mathematics department, we explore novel ways of accelerating 
     inference in convolutional neural networks on FPGAs.
