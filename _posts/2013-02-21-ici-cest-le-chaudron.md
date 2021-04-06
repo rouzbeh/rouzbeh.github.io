@@ -15,10 +15,10 @@ La question était alors de savoir ce que nous en ferions après. L'idée de dé
 On a donc fini par ajouter un maillon à la chaîne. Toutes les requêtes allaient être dirigées vers mon petit serveur domestique (un mac mini G4 de récup' qui tourne sous Linux et est particulièrement silencieux) qui lui est parfaitement capable de tourner n'importe quel service web, dont Squid. Le reste était facile à faire, avec un peu de code puisé [ici](https://www.funkypenguin.co.nz/tutorial/april-fools-pranks-with-a-squid-proxy-server/).
 
 Après un petit quart d'heure passé à fignoler les branchements sur place la veille de l'opération, voici ce que nos victimes ont découvert en allant sur le site du Monde:
-![Le site du monde vandalisé]({{ BASE_PATH }}/assets/images/chaudron/lemonde.png){: .img-responsive }
+![Le site du monde vandalisé]({{ BASE_PATH }}/assets/images/chaudron/lemonde.png){: .img-fluid .bg-white }
 
 Ou sur celui du Figaro:
-![Le figaro selon proxy]({{BASE_PATH }}/assets/images/chaudron/lefigaro.png){: .img-responsive }
+![Le figaro selon proxy]({{BASE_PATH }}/assets/images/chaudron/lefigaro.png){: .img-fluid .bg-white }
 
 Le plus drôle était que nous n'avons pas été immédiatement soupçonnés! La réaction immédiate des victimes a été de déclarer qu'un virus avait pénétré le téléphone de la première victime, qui s'est mis à chercher sur google comment se débarasser d'un «fils de **** de Stéphanois qui a hacké mon iphone». Mais en découvrant le même phénomène sur tous les autres appareils connectés en wifi, et voyant les deux coupables morts de rire, le pot aux roses fut rapidement découvert.
 

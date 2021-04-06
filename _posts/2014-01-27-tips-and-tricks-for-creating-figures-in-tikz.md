@@ -24,7 +24,8 @@ matlab2tikz('bar.tikz', 'showInfo', false, ...
 ```
 
 results in the following compiled pdf figure:
-![Bar plot]({{ BASE_PATH }}/assets/images/tikz2/bar.png){: .img-responsive }
+
+![Bar plot]({{ BASE_PATH }}/assets/images/tikz2/bar.png){: .img-fluid .bg-white}
 
 But, if we use a command such as *hist*:
 
@@ -37,7 +38,7 @@ matlab2tikz('hist.tikz', 'showInfo', false, ...
 ```
 
 The generated pdf figure will be somehow different from what we expect:
-![hist.png]({{ BASE_PATH }}/assets/images/tikz2/hist.png){: .img-responsive }
+![hist.png]({{ BASE_PATH }}/assets/images/tikz2/hist.png){: .img-fluid .bg-white}
 
 This is a documented [bug](https://github.com/nschloe/matlab2tikz/issues/294) in matlab2tikz. In most cases, it can be mediated by using the *bar* command instead of the *hist* for drawing the figure:
 
@@ -51,7 +52,7 @@ matlab2tikz('hist_bar.tikz', 'showInfo', false, ...
 ```
 
 So that we get the expected figure:
-![hist_bar.png]({{ BASE_PATH }}/assets/images/tikz2/hist_bar.png){: .img-responsive }
+![hist_bar.png]({{ BASE_PATH }}/assets/images/tikz2/hist_bar.png){: .img-fluid .bg-white}
 
 ### Figure alignment
 The width and height variables set when running matlab2tikz refer to the width and height of each axis, and not the width and height of the whole figure (including labels, tick labels, etc.). This can results in figures being misaligned, as is the case of the last figure in the [previous post]({{ BASE_PATH }}{% post_url 2014-01-22-creating-publication-quality-figures %}). This problem is more severe in the case of figures with multiple subfigures. One way of getting rid of this issue is by using a fixed width for tick labels on the y-axis. This can be accomplished by adding the specifying the width inside the figure:
@@ -85,7 +86,7 @@ The width and height variables set when running matlab2tikz refer to the width a
 ```
 
 Regenerating our latex document now results in perfectly aligned figures:
-![doc.png]({{ BASE_PATH }}/assets/images/tikz2/doc.png){: .img-responsive }
+![doc.png]({{ BASE_PATH }}/assets/images/tikz2/doc.png){: .img-fluid .bg-white}
 
 ### Subfigures
 There are two ways to generate subfigure using this method.
@@ -112,7 +113,7 @@ An example of the second method is already shown in the previous section. We can
 ```
 
 Adding this command right before our figure in the LaTeX document results in:
-![doc2.png]({{ BASE_PATH }}/assets/images/tikz2/doc2.png){: .img-responsive }
+![doc1.png]({{ BASE_PATH }}/assets/images/tikz2/doc2.png){: .img-fluid .bg-white}
 
 ### Cache generated figures
 Generating figures from tikz files is a relatively expensive (read *long*) operation. If you are working on one figure, it might be

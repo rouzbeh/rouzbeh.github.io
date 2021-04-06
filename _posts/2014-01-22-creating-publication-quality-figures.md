@@ -24,13 +24,15 @@ ylabel('Y [s]')
 saveas(h,'fig1.jpg')
 ```
 Which results in the following image.
-![fig1]({{ BASE_PATH }}/assets/images/tikz/fig1.jpg){: .img-responsive }
+![fig1]({{ BASE_PATH }}/assets/images/tikz/fig1.jpg){: .img-fluid .bg-white }
 
 This figure is certainly fine, but the fonts are too small, not to mention ugly, and the line is too thin. This can of course be remedied by using the export setup feature before saving the figure. Loading the default presentation parameters, for instance, and saving as before, gives us the following image.
-![fig2]({{ BASE_PATH }}/assets/images/tikz/fig2.jpg){: .img-responsive }
+
+![fig2]({{ BASE_PATH }}/assets/images/tikz/fig2.jpg){: .img-fluid .bg-white }
 
 This is better. The fonts look better, and the line is thick enough to be easily seen. This figure could almost be put in a poster. But as always, the devil is in the details. The first problem we notice is the jpg compression. On a poster, this will be really noticeable. So let's use a loss-less format, like png.
-![fig3]({{ BASE_PATH }}/assets/images/tikz/fig3.png){: .img-responsive }
+
+![fig3]({{ BASE_PATH }}/assets/images/tikz/fig3.png){: .img-fluid .bg-white }
 
 Now this we could put in a poster&#x2026; maybe. We may still need to change the font to something like Helvetica to be in accordance with the rest of the text. But for the most part, this is probably fine. If we want to be really picky, we can always remove all text from this figure.
 
@@ -46,10 +48,11 @@ This way we can insert all the text (tick labels, axis labels, etc.) directly in
 So far, we used raster formats to save our figure. In raster formats (bitmap, jpeg, png, gif, tiff etc.), the colour of each pixel in the image is independently stored. A bitmap image, for instance, is simply an array of colours, each for one pixel of the image. [Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics), on the other hand, store data about how the image was generated. For example, a vector image file can simple contain a line telling the viewer to draw a circle, instead of defining the value of all pixels in the image.
 
 The great advantage of vector formats over raster formats is the the former can be arbitrarily resized without any loss in quality. If our figure was smaller, resizing it to be larger would cause it to look like this:
-![fig4]({{ BASE_PATH }}/assets/images/tikz/fig4.png){: .img-responsive }
+
+![fig4]({{ BASE_PATH }}/assets/images/tikz/fig4.png){: .img-fluid .bg-white }
 
 Those jagged line (steps) are due to the resizing of the image. We can avoid them by storing our figure in a vectorial format, such as svg. Matlab can not do this out of the box, but we can use an external script for this. One such script can be found [here](http://www.mathworks.com/matlabcentral/fileexchange/7401-scalable-vector-graphics-svg-export-of-figures). The same figure saved as an svg image looks like this:
-![fig5]({{ BASE_PATH }}/assets/images/tikz/fig5.svg){: .img-responsive }
+![fig5]({{ BASE_PATH }}/assets/images/tikz/fig5.svg){: .img-fluid .bg-white }
 
 So here we have it. Make Matlab figures. Set the right options (remove all text, change line width, etc.). Save them as vector graphics (*eps* is fine, and included in matlab). Add text accordingly. If you are using Windows, you can also copy and paste Matlab figures directly into powerpoint or word. This works for the most part pretty well and you can also safely resize the resulting figure directly in powerpoint. I don't use windows, so I usually used the eps format.
 
@@ -139,11 +142,11 @@ lualatex fig6.tikz
 ```
 
 This creates a pdf [file]({{ BASE_PATH }}/assets/images/tikz/fig6.pdf), that looks like this:
-![fig6]({{ BASE_PATH }}/assets/images/tikz/fig6.png){: .img-responsive }
+![fig6]({{ BASE_PATH }}/assets/images/tikz/fig6.png){: .img-fluid .bg-white }
 
 Crucially, changing the width and height on the tikz file, and regenerating the pdf file results in a figure that looks as good. If
 we divide the height by 2, we get the following [figure]({{ BASE_PATH }}/assets/images/tikz/fig7.pdf):
-![fig7]({{ BASE_PATH }}/assets/images/tikz/fig7.png){: .img-responsive }
+![fig7]({{ BASE_PATH }}/assets/images/tikz/fig7.png){: .img-fluid .bg-white }
 
 The width of the line, the shape and the placement of text labels are all preserved perfectly, and of course, the pdf being a vectorial format, there is no jaggedness or steps.
 
@@ -232,6 +235,6 @@ We cannot directly compile this file into a pdf document. Instead, this file can
 ```
 
 There are a few remarkable things about this document. First of all, notice that we define parameter for the figure inside the LaTeX document. For instance, we decide to use a sans-serif font for all the figures in the document, as opposed to the one used in the standalone case. We also define two latex variables, *\figrelength* and *\figureheight*, using the *\newlength* command. We can change the values of these variable before we include each figure (using *\input*). This is how we can create figures with different heights from the same original tikz file. Compiling this LaTeX document creates this pdf ![file]{{ BASE_PATH }}/assets/images/tikz/fig8.pdf):
-![fig8]({{ BASE_PATH }}/assets/images/tikz/fig8.png){: .img-responsive }
+![fig7]({{ BASE_PATH }}/assets/images/tikz/fig8.png){: .img-fluid .bg-white }
 
 Notice how not only do we have the same figure with two different sizes although we used the same tikz file, but the two figures are both perfectly typeset. Additionally, the lower figure has more ticks on the Y-axis, since its height allows enough space for the additional ticks.
