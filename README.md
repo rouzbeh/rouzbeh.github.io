@@ -1,4 +1,4 @@
 # My personal site
-[![Build Status](https://travis-ci.org/rouzbeh/rouzbeh.github.io.svg?branch=source)](https://travis-ci.org/rouzbeh/rouzbeh.github.io)
+[![Build and deploy Jekyll site to GitHub Pages](https://github.com/rouzbeh/rouzbeh.github.io/actions/workflows/jekyll.yml/badge.svg)](https://github.com/rouzbeh/rouzbeh.github.io/actions/workflows/jekyll.yml)
 
 Made using Jekyll. Suggestions welcome.
