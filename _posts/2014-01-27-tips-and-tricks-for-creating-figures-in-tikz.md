@@ -14,7 +14,7 @@ This post is a continuation of [creating publication quality figures]({{ BASE_PA
 ### Bar graphs
 Bar graphs generated using different commands are treated differently. Exporting a simple bar graph created by:
 
-``` Matlab
+``` matlab
 x=[1,2,3];
 y=x;
 bar(x,y);
@@ -29,7 +29,7 @@ results in the following compiled pdf figure:
 
 But, if we use a command such as *hist*:
 
-``` Matlab
+``` matlab
 x=randn(1000,1);
 hist(x);
 matlab2tikz('hist.tikz', 'showInfo', false, ...
@@ -42,7 +42,7 @@ The generated pdf figure will be somehow different from what we expect:
 
 This is a documented [bug](https://github.com/nschloe/matlab2tikz/issues/294) in matlab2tikz. In most cases, it can be mediated by using the *bar* command instead of the *hist* for drawing the figure:
 
-``` Matlab
+``` matlab
 x=randn(1000,1);
 [nelements,centers]=hist(x);
 bar(centers, nelements);
