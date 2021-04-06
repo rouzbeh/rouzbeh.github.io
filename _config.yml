@@ -27,7 +27,10 @@ author : Ali Neishabouri
 #
 production_url : http://neishabouri.net
 
-plugins: [jekyll/scholar, jekyll-sitemap]
+plugins:
+  - jekyll/scholar
+  - jekyll-sitemap
+  - jekyll-figure
 
 scholar:
   style: apa
