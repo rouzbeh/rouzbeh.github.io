@@ -1,31 +1,37 @@
-<div class="panel panel-default col-md-10 col-md-offset-1">
-  <div class="panel-body">
+<div class="container-fluid">
     <div class="row">
-      <div class="col-sm-4">
-        <img src ="{{ BASE_PATH }}/assets/images/portrait.jpg"
-        class="img-circle img-responsive" title="Ali Neishabouri"
-        alt="Photo"/>
-        </div>
-        <div class="col-sm-8">
-          <h1>{{ page.title }} {% if page.tagline %} <small>{{ page.tagline }}</small>{% endif %}</h1>
-          <h2>Short bio</h2>
-          {{ content }}
-        </div>
-      </div>
-      <div class="row">
-        <h2>News</h2>
-        {% for newsitem in site.data.news %}
-        <div class="row">
-          <div class="col-sm-3">
-            <span class="news-date">{{ newsitem.date }}</span>
-          </div>
-          <div class="col-sm-9">
-            <span class="news-title">{{ newsitem.title }}</span>
-            <div class="news-body"><p>{{ newsitem.body }}</p>
+        <div class="card col-md-10 col-md-offset-1 bg-dark">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src ="{{ BASE_PATH }}/assets/images/portrait.jpg"
+                             class="rounded-circle img-responsive" title="Ali Neishabouri"
+                             alt="Photo"/>
+                    </div>
+                    <div class="col-sm-8">
+                        <h1 class="card-title">{{ page.title }} {% if page.tagline %} <small>{{ page.tagline }}</small>{% endif %}</h1>
+                        <h2>Short bio</h2>
+                        {{ content }}
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        {% endfor %}
-      </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2>News</h2>
+            {% for newsitem in site.data.news %}
+            <div class="row">
+                <div class="col-sm-3">
+                    <span class="news-date">{{ newsitem.date }}</span>
+                </div>
+                <div class="col-sm-9">
+                    <span class="news-title">{{ newsitem.title }}</span>
+                    <div class="news-body"><p>{{ newsitem.body }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
