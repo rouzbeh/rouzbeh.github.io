@@ -4,12 +4,12 @@
             <div class="card-body">
                 <div class="row g-0">
                     <div class="col-sm-4">
-                        <img src ="{{ BASE_PATH }}/assets/images/portrait.jpg"
-                             class="rounded-circle img-fluid" title="Ali Neishabouri"
-                             alt="Photo"/>
+                        <img src="{{ BASE_PATH }}/assets/images/portrait.jpg" class="rounded-circle img-fluid"
+                            title="Ali Neishabouri" alt="Photo" />
                     </div>
                     <div class="col-sm-8">
-                        <h1 class="card-title">{{ page.title }} {% if page.tagline %} <small>{{ page.tagline }}</small>{% endif %}</h1>
+                        <h1 class="card-title">{{ page.title }} {% if page.tagline %} <small>{{ page.tagline
+                                }}</small>{% endif %}</h1>
                         <h2>Short bio</h2>
                         {{ content }}
                     </div>
@@ -20,18 +20,15 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <h2>News</h2>
-            {% for newsitem in site.data.news %}
-            <div class="row">
-                <div class="col-sm-3">
-                    <span class="news-date">{{ newsitem.date }}</span>
-                </div>
-                <div class="col-sm-9">
-                    <span class="news-title">{{ newsitem.title }}</span>
-                    <div class="news-body"><p>{{ newsitem.body }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+            <dl class="row">
+                {% for newsitem in site.data.news %}
+                <dt class="col-sm-3">{{ newsitem.date }}</dt>
+                <dd class="col-sm-9">
+                    <h3>{{ newsitem.title }}</h3>
+                    <p>{{ newsitem.body }}</p>
+                </dd>
+                {% endfor %}
+            </dl>
         </div>
     </div>
 </div>

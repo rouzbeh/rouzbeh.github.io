@@ -7,10 +7,14 @@ group: navigation
 pageorder: 0
 ---
 
-I am an engineer, turned neuroscientist, turned data scientist. I am a founding
-director of [SPiKE.AI](https://www.spike.ai), where we provide machine learning
-services to innovating companies. I also work as an independent consultant for a
-few French companies here in Paris.
+I am an engineer, turned neuroscientist, turned data scientist. I work at Biogen,
+as Konectom's Head of Data Science, where I lead a team of brilliant Data Scientists
+who are trying to discover new ways of assessing and monitoring the impact of
+neurological diseases on patients' lives.
+
+I am a founding director of [SPiKE.AI](https://www.spike.ai), where we provide
+machine learning services to innovating companies. I also worked as an independent
+consultant for a few French companies here in Paris.
 
 I was a research associate in the [Department of Clinical and Experimental
 Epilepsy](https://www.ucl.ac.uk/ion/departments/epilepsy) at University College

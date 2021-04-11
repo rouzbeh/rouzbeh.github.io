@@ -6,6 +6,15 @@ categories :
 items :
 -
   category: machine learning
+  title: Head of Data Science, Konectom
+  place: Biogen
+  data: Since 07/2020
+  location: Paris, France
+  description: >-
+    At Biogen Digital Health, we pioneer new ways to assess and monitor neurological
+    diseases.
+-
+  category: machine learning
   title: Research Engineer
   place: Mipsology
   data: Since 09/2019
