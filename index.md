@@ -2,7 +2,6 @@
 layout: home
 title: Ali Neishabouri
 tagline : homepage
-analytics : false
 group: navigation
 pageorder: 0
 ---
