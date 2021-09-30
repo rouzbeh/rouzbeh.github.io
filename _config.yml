@@ -2,7 +2,8 @@
 # For more see: http://jekyllrb.com/docs/permalinks/
 permalink: /:categories/:year/:month/:day/:title
 
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", vendor]
+exclude:
+  [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", vendor]
 safe: false
 
 markdown: kramdown
@@ -13,9 +14,9 @@ kramdown:
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : Axons are fun
+title: Axons are fun
 tagline: for some people ...
-author : Ali Neishabouri
+author: Ali Neishabouri
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
@@ -25,7 +26,9 @@ author : Ali Neishabouri
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://neishabouri.net
+production_url: http://neishabouri.net
+disqus:
+  short_name: axonsarefun
 
 plugins:
   - jekyll/scholar
@@ -44,18 +47,18 @@ scholar:
   bibliography_template: bib
 
   replace_strings: true
-  join_strings:    true
+  join_strings: true
 
-  details_dir:    bibliography
+  details_dir: bibliography
   details_layout: bibtex.html
-  details_link:   Details
+  details_link: Details
 
   query: "@*"
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
-JB :
-  version : 0.3.0
+JB:
+  version: 0.3.0
 
   # All links will be namespaced by BASE_PATH if defined.
   # Links in your website should always be prefixed with {{BASE_PATH}}
@@ -79,7 +82,7 @@ JB :
   #   - Only the following values are falsy: ["", null, false]
   #   - When setting BASE_PATH it must be a valid url.
   #     This means always setting the protocol (http|https) or prefixing with "/"
-  BASE_PATH : false
+  BASE_PATH: false
 
   # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
   # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
@@ -89,51 +92,16 @@ JB :
   #   http://s3.amazonaws.com/yoursite/themes/watermelon
   #   /assets
   #
-  ASSET_PATH : false
+  ASSET_PATH: false
 
   # These paths are to the main pages Jekyll-Bootstrap ships with.
   # Some JB helpers refer to these paths; change them here if needed.
   #
   archive_path: /archive.html
-  categories_path : /categories.html
-  tags_path : /tags.html
-  atom_path : /atom.xml
-  rss_path : /rss.xml
-
-  # Settings for comments helper
-  # Set 'provider' to the comment provider you want to use.
-  # Set 'provider' to false to turn commenting off globally.
-  #
-  comments :
-    provider : disqus
-    disqus :
-      short_name : axonsarefun
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
-    duoshuo :
-      short_name : jekyllbootstrap
-
-  # Settings for analytics helper
-  # Set 'provider' to the analytics provider you want to use.
-  # Set 'provider' to false to turn analytics off globally.
-  #
-  analytics :
-    provider : false
-
-  # Settings for sharing helper.
-  # Sharing is for things like tweet, plusone, like, reddit buttons etc.
-  # Set 'provider' to the sharing provider you want to use.
-  # Set 'provider' to false to turn sharing off globally.
-  #
-  sharing :
-    provider : false
+  categories_path: /categories.html
+  tags_path: /tags.html
+  atom_path: /atom.xml
+  rss_path: /rss.xml
 
   # Settings for all other include helpers can be defined by creating
   # a hash with key named for the given helper. ex:
