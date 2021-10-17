@@ -22,3 +22,9 @@ In contrast, thin, unmyelinated axons make up most of the local (cortical) conne
 models of synaptic calcium dynamics and vesicle release, I showed that the waveform of action potentials undergoes random changes whilst traveling along thin unmyelinated axons. These fluctuations translate into synaptic response variability. The diameter of unmyelinated axons sets energetic limits to signalling, and I derived diameter-dependent relationships for the maximum rate of burst and sustained firing. The latter depends on the density of pumps and metabolic cost of action potentials, but is counter intuitively independent of axon diameter.
 
 My findings provide insights and scaling-relationships that relate the 4 fundamental design constraints for wiring brains. They allow us to quantitatively predict structure-function relationships, and form a basis for principled treatments of nerve disorders.
+
+## Articles
+{% bibliography --query @article %}
+
+## Conference abstracts and posters
+{% bibliography --query @inproceedings %}

@@ -25,16 +25,12 @@ name : bootstrap
     crossorigin="anonymous"></script>
 
   <link href="{{ BASE_PATH }}/assets/css/style.css" rel="stylesheet" />
+  <link href="{{ BASE_PATH }}/assets/css/fruity.css" rel="stylesheet" />
 
   <!-- Custom styles -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.2/css/all.css"
     integrity="sha384-XxNLWSzCxOe/CFcHcAiJAZ7LarLmw3f4975gOO6QkxvULbGGNDoSOTzItGUG++Q+" crossorigin="anonymous" />
 
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" />
-  </script>
-  <script>hljs.initHighlightingOnLoad();
-  </script>
   <!-- atom & rss feed -->
   <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate"
     title="Sitewide ATOM Feed" />
@@ -63,7 +59,7 @@ name : bootstrap
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container-fluid justify-content-center">
     {{ content }}
   </div>
 

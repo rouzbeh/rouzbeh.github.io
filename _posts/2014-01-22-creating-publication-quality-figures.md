@@ -8,7 +8,7 @@ redirect-from:
 tags: [Matlab, Latex, Tikz, Figure]
 ---
 {% include JB/setup %}
-One of the most annoying parts of writing publishable research material is making figures. Although it may seem rather simple to make a figures from, say, a spreadsheet program, systematic generation of high-quality figures is not that easy. I decided to write this post as a guide to my fellow lab members, and thought it may be useful to other researchers as well. The system described here is mainly based on the excellent [matlab2tikz](https://github.com/nschloe/matlab2tikz) package.
+One of the most annoying parts of writing publishable research material is making figures. Although it may seem rather simple to make a figures from, say, a spreadsheet program, systematic generation of high-quality figures is not that easy. I decided to write this post as a guide to my fellow lab members, and thought it may be useful to other researchers as well. The system described here is mainly based on the excellent [matlab2tikz](https://github.com/matlab2tikz/matlab2tikz) package.
 
 ### How hard is it to make a nice figure out of Matlab?
 
