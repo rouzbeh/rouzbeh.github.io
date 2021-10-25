@@ -4,6 +4,10 @@ body {
 }
 a {
   color: #96BBC4;
+
+}
+a:hover {
+  color: #845B4B;
 }
 img {
   filter: grayscale(30%);
