@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Ici c'est le chaudron
+  </title>
+  
+  <meta name="description" content="Petite blague en famille!" />
+  <meta name="author" content="Ali Neishabouri" />
+
+  <!-- Enable responsive viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <link href="/assets/css/style.css" rel="stylesheet" />
+  <link href="/assets/css/fruity.css" rel="stylesheet" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.2/css/all.css"
+    integrity="sha384-XxNLWSzCxOe/CFcHcAiJAZ7LarLmw3f4975gOO6QkxvULbGGNDoSOTzItGUG++Q+" crossorigin="anonymous" />
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+    title="Sitewide ATOM Feed" />
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate"
+    title="Sitewide RSS Feed" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">Axons are fun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          
+          
+          
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/" class="fa "> Ali Neishabouri</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/phd" class="fa fa-graduation-cap"> Research</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/posts" class="fa fa-quote-right"> Blog posts</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid justify-content-center">
+    
+
+<h2>Ici c'est le chaudron 
+  <small>
+    <span>21 February 2013</span>
+  </small>
+</h2>
+<div class="container-fluid col-md-8">
+  
+<p>Les frères de Delph’, originaires de Lyon, sont de grands fans de l’OL. Bien naturellement, elle a choisi de se déclarer supportrice de Saint-Étienne (parce que …) et s’est engagée dans une guerre de longue date, qui atteint son apogée chaque année au moment de Noël. Il y a quelques années, elle leur a offert des drapeaux de Saint-Étienne. En représaille, ils l’ont fait couché des draps OL. L’année suivante, elle a donc décoré leurs chambre tout en vert. Et pour prendre leur revanche, ils lui ont acheté une action de l’OL. Cette dernière prouesse a eu le mérite de calmer les hostilités pour quelques années.</p>
+
+<p>Cette année, elle m’a demandé de l’aide pour enfin trouver une réponse. Inspiré par <a href="http://www.ex-parrot.com/pete/upside-down-ternet.html">cette page</a>, et parce que j’avais un vieux <a href="http://www.fon.com">Fonera</a> avec dd-wrt qui prenait la poussière, nous nous sommes mis a chercher une idée. L’idée de base était évidemment de pervertir leur connexion à internet. Tout ce que nous avions besoin de faire était de brancher notre routeur à leur modem ADSL (une livebox), couper le réseau wifi de cette dernière (heureusement, personne ne change les mots de passe admin par défaut) et créer un autre réseau avec le même nom et la même clé. Une fois le changement effectué, tout le traffic internet non-chiffré passe entre nos mains, et ils n’y voient que du feu.</p>
+
+<p>La question était alors de savoir ce que nous en ferions après. L’idée de départ était seulement d’utiliser le petit routeur. Mais un serveur proxy était bien trop lourd pour une si petite machine. Et quand bien même elle aurait été capable de le faire tourner, je n’avais pas envie de commencer à mettre en place toute une chaîne de compilation, et je n’ai trouvé aucune image précompilée. Du coup je me suis orienté vers l’idée d’un serveur DNS qui redirigerait toute requête vers le site de l’AS Saint-Étienne, mais c’était un peu trop basique.</p>
+
+<p>On a donc fini par ajouter un maillon à la chaîne. Toutes les requêtes allaient être dirigées vers mon petit serveur domestique (un mac mini G4 de récup’ qui tourne sous Linux et est particulièrement silencieux) qui lui est parfaitement capable de tourner n’importe quel service web, dont Squid. Le reste était facile à faire, avec un peu de code puisé <a href="https://www.funkypenguin.co.nz/tutorial/april-fools-pranks-with-a-squid-proxy-server/">ici</a>.</p>
+
+<p>Après un petit quart d’heure passé à fignoler les branchements sur place la veille de l’opération, voici ce que nos victimes ont découvert en allant sur le site du Monde:
+<img src="/assets/images/chaudron/lemonde.png" alt="Le site du monde vandalisé" class="img-fluid bg-white" /></p>
+
+<p>Ou sur celui du Figaro:
+<img src="/assets/images/chaudron/lefigaro.png" alt="Le figaro selon proxy" class="img-fluid bg-white" /></p>
+
+<p>Le plus drôle était que nous n’avons pas été immédiatement soupçonnés! La réaction immédiate des victimes a été de déclarer qu’un virus avait pénétré le téléphone de la première victime, qui s’est mis à chercher sur google comment se débarasser d’un «fils de <em>**</em> de Stéphanois qui a hacké mon iphone». Mais en découvrant le même phénomène sur tous les autres appareils connectés en wifi, et voyant les deux coupables morts de rire, le pot aux roses fut rapidement découvert.</p>
+
+<p>En tout cas, c’était aussi une bonne façon de rappeller qu’à moins d’utiliser un protocole sécurisé, (le <a href="https://en.wikipedia.org/wiki/HTTP_Secure">https</a> toutes vos communications sur internet sont visibles par tout le monde (votre FAI, le gouvernement, les autres gouvernements, les constructeurs des équipements réseau, ou le voisin qui a deviné votre clé wifi). Utiliser des extensions comme <a href="https://www.eff.org/https-everywhere">https-everywhere</a> vous protégera un peu en forçant le https sur les sites qui le permettent. Dans le cas contraire, comme c’était le cas jusqu’à très récemment sur l’AppStore d’Apple, bonne chance!</p>
+
+</div>
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-open"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/categories.html#French-ref">
+    		French <span>1</span>
+    	</a></li>
+    
+  
+
+
+</ul>
+
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-tags"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/tags.html#Security-ref">Security <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#French-ref">French <span>2</span></a></li>
+    
+  
+
+
+
+</ul>
+
+
+<hr>
+<ul class="pagination">
+  
+  <li class="prev"><a href="/mathematics/2012/05/14/dressing-room-statistics" title="Dressing room statistics">&laquo;
+      Previous</a></li>
+  
+  <li><a href="/archive.html">Archive</a></li>
+  
+  <li class="next"><a href="/tips/2014/01/22/creating-publication-quality-figures" title="Creating publication quality figures">Next &raquo;</a></li>
+  
+</ul>
+<hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  
+  
+  var disqus_shortname = 'axonsarefun';
+  
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+</body>
+
+</html>

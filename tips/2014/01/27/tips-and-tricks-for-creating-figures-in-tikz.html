@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Tips and tricks for creating figures in tikz
+  </title>
+  
+  <meta name="description" content="" />
+  <meta name="author" content="Ali Neishabouri" />
+
+  <!-- Enable responsive viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <link href="/assets/css/style.css" rel="stylesheet" />
+  <link href="/assets/css/fruity.css" rel="stylesheet" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.2/css/all.css"
+    integrity="sha384-XxNLWSzCxOe/CFcHcAiJAZ7LarLmw3f4975gOO6QkxvULbGGNDoSOTzItGUG++Q+" crossorigin="anonymous" />
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+    title="Sitewide ATOM Feed" />
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate"
+    title="Sitewide RSS Feed" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">Axons are fun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          
+          
+          
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/" class="fa "> Ali Neishabouri</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/phd" class="fa fa-graduation-cap"> Research</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/posts" class="fa fa-quote-right"> Blog posts</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid justify-content-center">
+    
+
+<h2>Tips and tricks for creating figures in tikz 
+  <small>
+    <span>27 January 2014</span>
+  </small>
+</h2>
+<div class="container-fluid col-md-8">
+  
+<p>This post is a continuation of <a href="/tips/2014/01/22/creating-publication-quality-figures">creating publication quality figures</a>. As you might imagine, the process of creating figures using <em>matlab2tikz</em> is not always as smooth as in the case of simple figures. I have come across a few bugs, and here I will try to present simple workarounds for most cases.</p>
+
+<h3 id="bar-graphs">Bar graphs</h3>
+<p>Bar graphs generated using different commands are treated differently. Exporting a simple bar graph created by:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+<span class="nb">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="n">matlab2tikz</span><span class="p">(</span><span class="s1">'bar.tikz'</span><span class="p">,</span> <span class="s1">'showInfo'</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'parseStrings'</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="s1">'standalone'</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'5cm'</span><span class="p">,</span> <span class="s1">'width'</span><span class="p">,</span><span class="s1">'6cm'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>results in the following compiled pdf figure:</p>
+
+<p><img src="/assets/images/tikz2/bar.png" alt="Bar plot" class="img-fluid bg-white" /></p>
+
+<p>But, if we use a command such as <em>hist</em>:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">=</span><span class="nb">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">hist</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">matlab2tikz</span><span class="p">(</span><span class="s1">'hist.tikz'</span><span class="p">,</span> <span class="s1">'showInfo'</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'parseStrings'</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="s1">'standalone'</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'5cm'</span><span class="p">,</span> <span class="s1">'width'</span><span class="p">,</span><span class="s1">'6cm'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The generated pdf figure will be somehow different from what we expect:
+<img src="/assets/images/tikz2/hist.png" alt="hist.png" class="img-fluid bg-white" /></p>
+
+<p>This is a documented <a href="https://github.com/nschloe/matlab2tikz/issues/294">bug</a> in matlab2tikz. In most cases, it can be mediated by using the <em>bar</em> command instead of the <em>hist</em> for drawing the figure:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="o">=</span><span class="nb">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">[</span><span class="n">nelements</span><span class="p">,</span><span class="n">centers</span><span class="p">]</span><span class="o">=</span><span class="nb">hist</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="nb">bar</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">nelements</span><span class="p">);</span>
+<span class="n">matlab2tikz</span><span class="p">(</span><span class="s1">'hist_bar.tikz'</span><span class="p">,</span> <span class="s1">'showInfo'</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'parseStrings'</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="s1">'standalone'</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'5cm'</span><span class="p">,</span> <span class="s1">'width'</span><span class="p">,</span><span class="s1">'6cm'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>So that we get the expected figure:
+<img src="/assets/images/tikz2/hist_bar.png" alt="hist_bar.png" class="img-fluid bg-white" /></p>
+
+<h3 id="figure-alignment">Figure alignment</h3>
+<p>The width and height variables set when running matlab2tikz refer to the width and height of each axis, and not the width and height of the whole figure (including labels, tick labels, etc.). This can results in figures being misaligned, as is the case of the last figure in the <a href="/tips/2014/01/22/creating-publication-quality-figures">previous post</a>. This problem is more severe in the case of figures with multiple subfigures. One way of getting rid of this issue is by using a fixed width for tick labels on the y-axis. This can be accomplished by adding the specifying the width inside the figure:</p>
+
+<div class="language-TeX highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="na">[a4paper]</span><span class="p">{</span>article<span class="p">}</span> <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="p">{</span>inputenc<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>subfig,float<span class="p">}</span> <span class="k">\usepackage</span><span class="na">[english]</span><span class="p">{</span>babel<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz, pgfplots<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[font=normal,labelfont=bf]</span><span class="p">{</span>caption<span class="p">}</span>
+<span class="k">\pgfplotsset</span><span class="p">{</span> <span class="c">% Here we specify options for all figures in the document</span>
+  compat=1.8, <span class="c">% Which version of pgfplots do we want to use?</span>
+  legend style =
+  <span class="p">{</span>font=<span class="k">\small\sffamily</span><span class="p">}</span>,
+  label style = <span class="p">{</span>font=<span class="k">\small\sffamily</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">\begin{document}</span>
+<span class="k">\newlength\figureheight</span>
+<span class="k">\newlength\figurewidth</span>
+
+<span class="nt">\begin{figure}</span>[h]
+<span class="c">% y-axis tick label width</span>
+<span class="k">\pgfplotsset</span><span class="p">{</span>yticklabel style=<span class="p">{</span>text width=3em,align=right<span class="p">}}</span>
+  <span class="k">\subfloat</span><span class="na">[][Our figure]</span><span class="p">{</span> <span class="k">\setlength\figureheight</span><span class="p">{</span>0.3<span class="k">\textwidth</span><span class="p">}</span>
+    <span class="k">\setlength\figurewidth</span><span class="p">{</span>0.8<span class="k">\textwidth</span><span class="p">}</span> <span class="k">\input</span><span class="p">{</span>fig8.tikz<span class="p">}</span>
+  <span class="p">}</span><span class="k">\\</span>
+  <span class="k">\subfloat</span><span class="na">[][Our figure, with a different size]</span><span class="p">{</span>
+    <span class="k">\setlength\figureheight</span><span class="p">{</span>0.6<span class="k">\textwidth</span><span class="p">}</span>
+    <span class="k">\setlength\figurewidth</span><span class="p">{</span>0.8<span class="k">\textwidth</span><span class="p">}</span> <span class="k">\input</span><span class="p">{</span>fig8.tikz<span class="p">}</span> <span class="p">}</span>
+              <span class="nt">\end{figure}</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<p>Regenerating our latex document now results in perfectly aligned figures:
+<img src="/assets/images/tikz2/doc.png" alt="doc.png" class="img-fluid bg-white" /></p>
+
+<h3 id="subfigures">Subfigures</h3>
+<p>There are two ways to generate subfigure using this method.</p>
+
+<ul>
+  <li>In Matlab</li>
+</ul>
+
+<p>We can generate a figure with subfigures in Matlab and save it as one figure.</p>
+
+<ul>
+  <li>In LaTeX</li>
+</ul>
+
+<p>The other solution is to export each subfigure independently, and put them together in Matlab. I personally prefer this method
+because it gives me the highest amount of control over the presentation of subfigure, and allows fancy tricks such as referencing subfigures.</p>
+
+<p>An example of the second method is already shown in the previous section. We can improve it by making sure that subfigure numbers are written as required by most journals. I found the following command on <a href="http://www.latex-community.org/know-how/latex/51-latex-math-science/280-formatting-latex-articles-for-biology-journals">this great page</a>.</p>
+
+<div class="language-TeX highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% set package options</span>
+<span class="k">\captionsetup</span><span class="na">[subfloat]</span><span class="p">{</span>position=top,singlelinecheck=false,labelfont=<span class="p">{</span>normalsize,sf<span class="p">}</span>,
+  labelformat=simple,listofformat=subparens,aboveskip=0pt,parskip=0pt,farskip=5pt,
+  captionskip=0pt<span class="p">}</span>
+
+<span class="c">% customize subfigure label to capitals</span>
+<span class="k">\renewcommand</span><span class="p">{</span><span class="k">\thesubfigure</span><span class="p">}{</span><span class="k">\textbf</span><span class="p">{</span><span class="k">\Alph</span><span class="p">{</span>subfigure<span class="p">}}}</span>
+</code></pre></div></div>
+
+<p>Adding this command right before our figure in the LaTeX document results in:
+<img src="/assets/images/tikz2/doc2.png" alt="doc1.png" class="img-fluid bg-white" /></p>
+
+<h3 id="cache-generated-figures">Cache generated figures</h3>
+<p>Generating figures from tikz files is a relatively expensive (read <em>long</em>) operation. If you are working on one figure, it might be
+annoying to have to wait for all the other figures in your document to be generated as well. Fortunately, LaTeX can save generated figures as independent pdf files, and include them automatically instead of regenerating them from scratch.</p>
+
+<p>Create a folder next to your LaTeX document called autofigs, and add this line to the header (before <em>\begin{document}</em>) of the latex document</p>
+
+<div class="language-TeX highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usetikzlibrary</span><span class="p">{</span>external<span class="p">}</span> <span class="k">\tikzset</span><span class="p">{</span>external/system call=<span class="p">{</span>lualatex
+    <span class="k">\tikzexternalcheckshellescape</span> -halt-on-error
+    -interaction=batchmode -jobname "<span class="k">\image</span>" "<span class="k">\texsource</span>"<span class="p">}}</span>
+<span class="k">\tikzexternalize</span><span class="na">[prefix=autofigs/]</span>
+</code></pre></div></div>
+
+<p>And make sure to compile the resulting document using the <em>–shell-escape</em> option:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pdflatex <span class="nt">--shell-escape</span> doc.tex
+</code></pre></div></div>
+
+<p>Once compiled, the autofigs folder will contain pdf files, one per figure. Recompiling the document will not require regeneration of all figures, and is therefore much faster.</p>
+
+<p>There is one caveat though. Changes in tikz files are not automatically detected. If you want a figure to be changed you will need to delete the corresponding files in the autofigs folder.</p>
+
+</div>
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-open"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/categories.html#Tips-ref">
+    		Tips <span>2</span>
+    	</a></li>
+    
+  
+
+
+</ul>
+
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-tags"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/tags.html#Matlab-ref">Matlab <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Latex-ref">Latex <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Tikz-ref">Tikz <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Figure-ref">Figure <span>2</span></a></li>
+    
+  
+
+
+
+</ul>
+
+
+<hr>
+<ul class="pagination">
+  
+  <li class="prev"><a href="/tips/2014/01/22/creating-publication-quality-figures" title="Creating publication quality figures">&laquo;
+      Previous</a></li>
+  
+  <li><a href="/archive.html">Archive</a></li>
+  
+  <li class="next disabled"><a>Next &rarr;</a>
+    
+</ul>
+<hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  
+  
+  var disqus_shortname = 'axonsarefun';
+  
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+</body>
+
+</html>

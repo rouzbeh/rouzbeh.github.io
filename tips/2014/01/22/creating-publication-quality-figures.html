@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Creating publication quality figures
+  </title>
+  
+  <meta name="description" content="" />
+  <meta name="author" content="Ali Neishabouri" />
+
+  <!-- Enable responsive viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <link href="/assets/css/style.css" rel="stylesheet" />
+  <link href="/assets/css/fruity.css" rel="stylesheet" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.2/css/all.css"
+    integrity="sha384-XxNLWSzCxOe/CFcHcAiJAZ7LarLmw3f4975gOO6QkxvULbGGNDoSOTzItGUG++Q+" crossorigin="anonymous" />
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+    title="Sitewide ATOM Feed" />
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate"
+    title="Sitewide RSS Feed" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">Axons are fun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          
+          
+          
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/" class="fa "> Ali Neishabouri</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/phd" class="fa fa-graduation-cap"> Research</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/posts" class="fa fa-quote-right"> Blog posts</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid justify-content-center">
+    
+
+<h2>Creating publication quality figures 
+  <small>
+    <span>22 January 2014</span>
+  </small>
+</h2>
+<div class="container-fluid col-md-8">
+  
+<p>One of the most annoying parts of writing publishable research material is making figures. Although it may seem rather simple to make a figures from, say, a spreadsheet program, systematic generation of high-quality figures is not that easy. I decided to write this post as a guide to my fellow lab members, and thought it may be useful to other researchers as well. The system described here is mainly based on the excellent <a href="https://github.com/matlab2tikz/matlab2tikz">matlab2tikz</a> package.</p>
+
+<h3 id="how-hard-is-it-to-make-a-nice-figure-out-of-matlab">How hard is it to make a nice figure out of Matlab?</h3>
+
+<p>I am going to argue that the answer is <strong>very hard</strong>. Now of course anyone having used Matlab knows of the <em>plot</em> and <em>saveas</em> functions, and is able to quickly produce a figure using something like this:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.01</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mf">0.1</span><span class="o">.*</span><span class="nb">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+<span class="n">h</span><span class="o">=</span><span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'X [m]'</span><span class="p">)</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s1">'Y [s]'</span><span class="p">)</span>
+<span class="nb">saveas</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s1">'fig1.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Which results in the following image.
+<img src="/assets/images/tikz/fig1.jpg" alt="fig1" class="img-fluid bg-white" /></p>
+
+<p>This figure is certainly fine, but the fonts are too small, not to mention ugly, and the line is too thin. This can of course be remedied by using the export setup feature before saving the figure. Loading the default presentation parameters, for instance, and saving as before, gives us the following image.</p>
+
+<p><img src="/assets/images/tikz/fig2.jpg" alt="fig2" class="img-fluid bg-white" /></p>
+
+<p>This is better. The fonts look better, and the line is thick enough to be easily seen. This figure could almost be put in a poster. But as always, the devil is in the details. The first problem we notice is the jpg compression. On a poster, this will be really noticeable. So let’s use a loss-less format, like png.</p>
+
+<p><img src="/assets/images/tikz/fig3.png" alt="fig3" class="img-fluid bg-white" /></p>
+
+<p>Now this we could put in a poster… maybe. We may still need to change the font to something like Helvetica to be in accordance with the rest of the text. But for the most part, this is probably fine. If we want to be really picky, we can always remove all text from this figure.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'YTickLabel'</span><span class="p">,[])</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'XTickLabel'</span><span class="p">,[])</span>
+</code></pre></div></div>
+
+<p>This way we can insert all the text (tick labels, axis labels, etc.) directly in whatever program we use for making the poster. I made many of my posters in this way, except that I used vector graphics.</p>
+
+<h3 id="vector-graphics">Vector graphics</h3>
+
+<p>So far, we used raster formats to save our figure. In raster formats (bitmap, jpeg, png, gif, tiff etc.), the colour of each pixel in the image is independently stored. A bitmap image, for instance, is simply an array of colours, each for one pixel of the image. <a href="https://en.wikipedia.org/wiki/Vector_graphics">Vector graphics</a>, on the other hand, store data about how the image was generated. For example, a vector image file can simple contain a line telling the viewer to draw a circle, instead of defining the value of all pixels in the image.</p>
+
+<p>The great advantage of vector formats over raster formats is the the former can be arbitrarily resized without any loss in quality. If our figure was smaller, resizing it to be larger would cause it to look like this:</p>
+
+<p><img src="/assets/images/tikz/fig4.png" alt="fig4" class="img-fluid bg-white" /></p>
+
+<p>Those jagged line (steps) are due to the resizing of the image. We can avoid them by storing our figure in a vectorial format, such as svg. Matlab can not do this out of the box, but we can use an external script for this. One such script can be found <a href="http://www.mathworks.com/matlabcentral/fileexchange/7401-scalable-vector-graphics-svg-export-of-figures">here</a>. The same figure saved as an svg image looks like this:
+<img src="/assets/images/tikz/fig5.svg" alt="fig5" class="img-fluid bg-white" /></p>
+
+<p>So here we have it. Make Matlab figures. Set the right options (remove all text, change line width, etc.). Save them as vector graphics (<em>eps</em> is fine, and included in matlab). Add text accordingly. If you are using Windows, you can also copy and paste Matlab figures directly into powerpoint or word. This works for the most part pretty well and you can also safely resize the resulting figure directly in powerpoint. I don’t use windows, so I usually used the eps format.</p>
+
+<p>There are other problems associated with this approach. There is a lot of manual work involved, which makes the process very error-prone. In addition, adding the text externally is really only feasible for a poster. If you are writing a document, either in a word processor or using LaTeX, this becomes impractical. Another problem with this approach is visible in the last figure. Resizing the figure also resized the lines, points, and any text in the figure. In the last figure, the line is way too thick. This means that the figures need to be created at the right size inside Matlab, before being exported. This means that figures can not be made once, and used for different posters/papers/etc.</p>
+
+<p>These problems led me to use tikz for figures in my thesis. In the rest of this post, I will explain the basics of using tikz to create a figure and including tikz figures inside LaTeX documents.</p>
+
+<h3 id="making-figures-with-tikz">Making figures with tikz</h3>
+
+<p>Here is the basic code to generate and export our figure to tikz.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">'defaulttextinterpreter'</span><span class="p">,</span><span class="s1">'none'</span><span class="p">);</span> <span class="c1">% Prevents Matlab from trying to</span>
+    <span class="c1">% interpret latex string.</span>
+<span class="n">h</span><span class="o">=</span><span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'X [m]'</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s1">'Y [s]'</span><span class="p">);</span>
+<span class="n">cleanfigure</span><span class="p">;</span>
+<span class="n">matlab2tikz</span><span class="p">(</span><span class="s1">'fig6.tikz'</span><span class="p">,</span> <span class="s1">'showInfo'</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'parseStrings'</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="s1">'standalone'</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'5cm'</span><span class="p">,</span> <span class="s1">'width'</span><span class="p">,</span><span class="s1">'6cm'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Running this chuck of code will give us a tikz file. A tikz file basically contains instructions that can be understood by a latex
+interpreter to produce an image. In this case, the tikz file uses another package, <em>pgfplot</em>, which provides commands to easily draw axes and coordinates. Our tikz file contains :</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% This file was created by matlab2tikz v0.4.4 running on MATLAB 8.2.</span>
+<span class="c">% Copyright (c) 2008--2013, Nico Schlömer &lt;nico.schloemer@gmail.com&gt;</span>
+<span class="c">% All rights reserved.</span>
+<span class="c">%</span>
+<span class="k">\documentclass</span><span class="na">[tikz]</span><span class="p">{</span>standalone<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>pgfplots<span class="p">}</span>
+<span class="k">\pgfplotsset</span><span class="p">{</span>compat=newest<span class="p">}</span>
+<span class="k">\usetikzlibrary</span><span class="p">{</span>plotmarks<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>amsmath<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="nt">\begin{tikzpicture}</span>
+
+<span class="nt">\begin{axis}</span>[<span class="c">%</span>
+width=6cm,
+height=5cm,
+scale only axis,
+xmin=0,
+xmax=1,
+xlabel=<span class="p">{</span>X [m]<span class="p">}</span>,
+ymin=-0.4,
+ymax=1.2,
+ylabel=<span class="p">{</span>Y [s]<span class="p">}</span>
+]
+<span class="k">\addplot</span> [
+color=blue,
+solid,
+forget plot
+]
+table[row sep=crcr]<span class="p">{</span>
+0 0.05376671395461<span class="k">\\</span>
+0.01 0.193388501459509<span class="k">\\</span>
+0.02 -0.205884686100365<span class="k">\\</span>
+0.03 0.116217332036812<span class="k">\\</span>
+0.04 0.0718765239858981<span class="k">\\</span>
+0.05 -0.0807688296305274<span class="k">\\</span>
+0.06 0.0166407977694316<span class="k">\\</span>
+0.07 0.104262446653865<span class="k">\\</span>
+0.08 0.437839693972576<span class="k">\\</span>
+0.09 0.366943702988488<span class="k">\\</span>
+...
+0.99 0.810532115854488<span class="k">\\</span>
+1 1.08403755297539<span class="k">\\</span>
+<span class="p">}</span>;
+<span class="nt">\end{axis}</span>
+<span class="nt">\end{tikzpicture}</span><span class="c">%</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<p>This is actually human readable. You could, if you wanted to, dig in and change anything about the figure. Since it is a plain-text file, you could also automate these changes. Imagine that instead of putting voltage on one of your axes, you wanted to use potential. You could do that for all the figures in one folder by running a command like:</p>
+
+<pre><code class="language-Bash">sed 's/voltage/potential/g' *.tikz
+</code></pre>
+
+<p>We can also use all sorts of tools that work nicely with plain-text files, such as version control systems. The tikz file can be converted into a pdf file by running on the command line (not in matlab):</p>
+<pre><code class="language-Bash">lualatex fig6.tikz
+</code></pre>
+
+<p>This creates a pdf <a href="/assets/images/tikz/fig6.pdf">file</a>, that looks like this:
+<img src="/assets/images/tikz/fig6.png" alt="fig6" class="img-fluid bg-white" /></p>
+
+<p>Crucially, changing the width and height on the tikz file, and regenerating the pdf file results in a figure that looks as good. If
+we divide the height by 2, we get the following <a href="/assets/images/tikz/fig7.pdf">figure</a>:
+<img src="/assets/images/tikz/fig7.png" alt="fig7" class="img-fluid bg-white" /></p>
+
+<p>The width of the line, the shape and the placement of text labels are all preserved perfectly, and of course, the pdf being a vectorial format, there is no jaggedness or steps.</p>
+
+<h3 id="inside-a-latex-document">Inside a LaTeX document</h3>
+
+<p>The advantages of this workflow, even though the generated figures are gorgeous, are not obvious so far. Instead of having a tikz file, we could also have saved the matlab figure as <em>.fig</em> file and exported from it as a <em>.tiff</em> file in the right size anytime we needed to. With the tikz format, we have to modify the <em>.tikz</em> file and recompile it every time we need a different sized figure. This can be done programmatically thanks to the plain-text format, but is far from being really practical.</p>
+
+<p>Where this method really shows its potential is inside a LaTeX document. Instead of compiling the figure into a pdf file to be
+included in the pdf generated by LaTeX, you can import the tikz file directly. First, we need to generate a non-standalone tikz file. This can be done by running the matlab2tikz command with the standalone option set to false:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matlab2tikz</span><span class="p">(</span><span class="s1">'fig8.tikz'</span><span class="p">,</span> <span class="s1">'showInfo'</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'parseStrings'</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="s1">'standalone'</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">...</span>
+        <span class="s1">'height'</span><span class="p">,</span> <span class="s1">'\figureheight'</span><span class="p">,</span> <span class="s1">'width'</span><span class="p">,</span><span class="s1">'\figurewidth'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Notice that instead of specifying a width and a height, we give two LaTeX comamnds: \figurewidth and \figureheight. These are not standard latex commands. We will define them in our LaTeX document. The generated tikz file contains:</p>
+
+<div class="language-TeX highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% This file was created by matlab2tikz v0.4.4 running on MATLAB 8.2.</span>
+<span class="c">% Copyright (c) 2008--2013, Nico Schlömer &lt;nico.schloemer@gmail.com&gt;</span>
+<span class="c">% All rights reserved.</span>
+<span class="c">%</span>
+<span class="nt">\begin{tikzpicture}</span>
+
+<span class="nt">\begin{axis}</span>[<span class="c">%</span>
+width=<span class="k">\figurewidth</span>,
+height=<span class="k">\figureheight</span>,
+scale only axis,
+xmin=0,
+xmax=1,
+xlabel=<span class="p">{</span>X [m]<span class="p">}</span>,
+ymin=-0.4,
+ymax=1.2,
+ylabel=<span class="p">{</span>Y [s]<span class="p">}</span>
+]
+<span class="k">\addplot</span> [
+color=blue,
+solid,
+forget plot
+]
+table[row sep=crcr]<span class="p">{</span>
+0 0.05376671395461<span class="k">\\</span>
+0.01 0.193388501459509<span class="k">\\</span>
+0.02 -0.205884686100365<span class="k">\\</span>
+...
+0.99 0.810532115854488<span class="k">\\</span>
+1 1.08403755297539<span class="k">\\</span>
+<span class="p">}</span>;
+<span class="nt">\end{axis}</span>
+<span class="nt">\end{tikzpicture}</span><span class="c">%</span>
+</code></pre></div></div>
+
+<p>We cannot directly compile this file into a pdf document. Instead, this file can be included inside a LaTeX document:</p>
+
+<div class="language-TeX highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="na">[a4paper]</span><span class="p">{</span>article<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="p">{</span>inputenc<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[english]</span><span class="p">{</span>babel<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>tikz, pgfplots<span class="p">}</span> <span class="c">% Necessary package for tikz</span>
+<span class="k">\usepackage</span><span class="na">[font=normal,labelfont=bf]</span><span class="p">{</span>caption<span class="p">}</span>
+<span class="k">\pgfplotsset</span><span class="p">{</span> <span class="c">% Here we specify options for all figures in the document</span>
+  compat=1.8, <span class="c">% Which version of pgfplots do we want to use?</span>
+  legend style = <span class="p">{</span>font=<span class="k">\small\sffamily</span><span class="p">}</span>, <span class="c">% Legends in a sans-serif font</span>
+  label style = <span class="p">{</span>font=<span class="k">\small\sffamily</span><span class="p">}</span> <span class="c">% Labels in a sans-serif font</span>
+<span class="p">}</span>
+<span class="nt">\begin{document}</span>
+<span class="k">\newlength\figureheight</span>
+<span class="k">\newlength\figurewidth</span>
+
+<span class="nt">\begin{figure}</span>[h]
+  <span class="k">\setlength\figureheight</span><span class="p">{</span>0.3<span class="k">\textwidth</span><span class="p">}</span>
+  <span class="k">\setlength\figurewidth</span><span class="p">{</span>0.8<span class="k">\textwidth</span><span class="p">}</span>
+  <span class="k">\input</span><span class="p">{</span>fig8.tikz<span class="p">}</span><span class="c">%</span>
+  <span class="k">\caption</span><span class="p">{</span><span class="k">\label</span><span class="p">{</span>fig:1<span class="p">}</span>Our figure<span class="p">}</span>
+<span class="nt">\end{figure}</span>
+
+<span class="nt">\begin{figure}</span>[h]
+  <span class="k">\setlength\figureheight</span><span class="p">{</span>0.6<span class="k">\textwidth</span><span class="p">}</span>
+  <span class="k">\setlength\figurewidth</span><span class="p">{</span>0.8<span class="k">\textwidth</span><span class="p">}</span>
+  <span class="k">\input</span><span class="p">{</span>fig8.tikz<span class="p">}</span><span class="c">%</span>
+  <span class="k">\caption</span><span class="p">{</span><span class="k">\label</span><span class="p">{</span>fig:2<span class="p">}</span>Our figure, with a different size<span class="p">}</span>
+<span class="nt">\end{figure}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<p>There are a few remarkable things about this document. First of all, notice that we define parameter for the figure inside the LaTeX document. For instance, we decide to use a sans-serif font for all the figures in the document, as opposed to the one used in the standalone case. We also define two latex variables, <em>\figrelength</em> and <em>\figureheight</em>, using the <em>\newlength</em> command. We can change the values of these variable before we include each figure (using <em>\input</em>). This is how we can create figures with different heights from the same original tikz file. Compiling this LaTeX document creates this pdf <a href="/assets/images/tikz/fig8.pdf">file</a>:
+<img src="/assets/images/tikz/fig8.png" alt="fig7" class="img-fluid bg-white" /></p>
+
+<p>Notice how not only do we have the same figure with two different sizes although we used the same tikz file, but the two figures are both perfectly typeset. Additionally, the lower figure has more ticks on the Y-axis, since its height allows enough space for the additional ticks.</p>
+
+</div>
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-open"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/categories.html#Tips-ref">
+    		Tips <span>2</span>
+    	</a></li>
+    
+  
+
+
+</ul>
+
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-tags"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/tags.html#Matlab-ref">Matlab <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Latex-ref">Latex <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Tikz-ref">Tikz <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Figure-ref">Figure <span>2</span></a></li>
+    
+  
+
+
+
+</ul>
+
+
+<hr>
+<ul class="pagination">
+  
+  <li class="prev"><a href="/french/2013/02/21/ici-cest-le-chaudron" title="Ici c'est le chaudron">&laquo;
+      Previous</a></li>
+  
+  <li><a href="/archive.html">Archive</a></li>
+  
+  <li class="next"><a href="/tips/2014/01/27/tips-and-tricks-for-creating-figures-in-tikz" title="Tips and tricks for creating figures in tikz">Next &raquo;</a></li>
+  
+</ul>
+<hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  
+  
+  var disqus_shortname = 'axonsarefun';
+  
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+</body>
+
+</html>

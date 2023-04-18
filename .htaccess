@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^French/(.*)$ http://neishabouri.net/french/$1 [R=301,L]
+RewriteRule ^Tips/(.*)$ http://neishabouri.net/tips/$1 [R=301,L]
+RewriteRule ^Mathematics/(.*)$ http://neishabouri.net/mathematics/$1 [R=301,L]

@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Sondages et Elections
+  </title>
+  
+  <meta name="description" content="De l'importance de la taille des échantillons" />
+  <meta name="author" content="Ali Neishabouri" />
+
+  <!-- Enable responsive viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <link href="/assets/css/style.css" rel="stylesheet" />
+  <link href="/assets/css/fruity.css" rel="stylesheet" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.2/css/all.css"
+    integrity="sha384-XxNLWSzCxOe/CFcHcAiJAZ7LarLmw3f4975gOO6QkxvULbGGNDoSOTzItGUG++Q+" crossorigin="anonymous" />
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+    title="Sitewide ATOM Feed" />
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate"
+    title="Sitewide RSS Feed" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">Axons are fun</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          
+          
+          
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/" class="fa "> Ali Neishabouri</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/phd" class="fa fa-graduation-cap"> Research</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="nav-link"><a href="/posts" class="fa fa-quote-right"> Blog posts</a></li>
+      	
+      
+    
+  
+
+
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid justify-content-center">
+    
+
+<h2>Sondages et Elections 
+  <small>
+    <span>04 May 2012</span>
+  </small>
+</h2>
+<div class="container-fluid col-md-8">
+  
+<p>À chaque élection, la question des sondages, et de la confiance qu’il faut leur accorder est une des questions centrale. Nous savons
+qu’il peuvent se tromper, et nous avons en tête le chiffre des 3% pour un échantillon de 1000 individus, d’après un article paru dans le monde. Mais d’où vient ce chiffre, et que dire des échantillons de 500 (comme dans les sondages faits juste après le débat) ou moins (par exemple ceux portant sur les reports de voix).</p>
+
+<p>On peut répondre à ces questions sans faire de calculs compliqués grâce à des simulations. En utilisant les données du <a href="http://elections.lefigaro.fr/presidentielle-2012/2012/05/04/01039-20120504ARTFIG00382-sondages-l-ecart-entre-sarkozy-et-hollande-se-reduit.php">dernier sondage</a> (47.5% pour Sarkozy) et avec un échantillon de 1000 personnes, voici ce que l’on obtient:
+<img src="/assets/images/plot.jpg" alt="Courbe de probabilité" class="img-fluid" /></p>
+
+<p>Cette courbe montre la probabilité des différents scores possibles le jour du scrutin. Le résultat le plus probable est bien entendu celui donné par le sondage, mais les résultats proches de celui-ci sont raisonnablement possibles. Cette cloche représente le degré de confiance qu’on peut accorder à ce sondage. Plus l’échantillon est important, moins cette cloche sera large.</p>
+
+<p>Le chiffre qui nous intéresse est la probabilité que Nicolas Sarkozy gagne le jour de l’élection, quelque soit le score. En additionnant les probabilités de tous les scores supérieurs à 50%, on arrive à 7%. Donc, il y a 7 chances sur 100 pour que Sarkozy soit en fait le gagnant. Remarquez que ce résultat est très sensible à la taille de l’échantillon. Si on n’avait que 500 sondés, la courbe resseblerait à ça :
+<img src="/assets/images/plot2.jpg" alt="Courbe de probabilité" class="img-fluid" /></p>
+
+<p>La cloche est plus large, traduisant une plus grande incertitude. La probabilité de victoire de Sarkozy serait alors de plus de 30%. Autant dire que le sondage ne sert pas à grande chose. Au passage, remarquez que même avec 1000 echantillons, c’est assez ridicule de prétendre mesurer des variations de 0,5%; à moins que les sondeurs connaissent des algorithmes relevant de la magie.</p>
+
+<p>Nous (<a href="http://www.faisallab.com">Aldo Faisal</a> et moi) avons mis au point un petit script <a href="http://www.gnu.org/software/octave/">octave</a> (ou Matlab) qui nous permet de visualiser la distribution de probabilité de la popularité réélle d’un candidat en fonction de sa popularité dans un échantillon donné. Il suffit de renseigner la taille de l’échantillon utilise pour le sondage (en general entre 500 et 1000) et le résultat de ce sondage (la proportion d’électeurs déclarant voter pour Sarkozy, aux alentours de 47%) et lancer le script.</p>
+
+<pre><code class="language-Matlab">clear
+close all
+
+echantillon = 500;
+observation = 0.475
+
+p=[0:0.001:1];
+
+figure,
+votesPolledSarko = round(observation*echantillon)
+totalPolled = echantillon;
+for ll=1:length(p)
+  pSarko(ll) = binopdf(votesPolledSarko,totalPolled,p(ll));
+end
+
+plot(p*100,pSarko/sum(pSarko),'-')
+probOfSarkoWin = sum(pSarko(floor(end/2):end))
+axis tight
+t = sprintf('Prob that Sarkzy may win is %f.'...
+  probOfSarkoWin);
+title(t)
+xlabel('Final score')
+ylabel('Probability')
+</code></pre>
+
+<p>Vous pouvez utiliser ce script pour générer ces courbes, ou renseigner d’autres données. Il est dans le domaine public.</p>
+
+</div>
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-open"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/categories.html#Mathematics-ref">
+    		Mathematics <span>2</span>
+    	</a></li>
+    
+  
+
+
+</ul>
+
+
+
+<ul class="tag_box inline">
+  <li><i class="glyphicon glyphicon-tags"></i></li>
+  
+  
+
+
+  
+     
+    	<li><a href="/tags.html#French-ref">French <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#Mathematics-ref">Mathematics <span>1</span></a></li>
+    
+  
+
+
+
+</ul>
+
+
+<hr>
+<ul class="pagination">
+  
+  <li class="prev disabled"><a>&larr; Previous</a></li>
+  
+  <li><a href="/archive.html">Archive</a></li>
+  
+  <li class="next"><a href="/mathematics/2012/05/14/dressing-room-statistics" title="Dressing room statistics">Next &raquo;</a></li>
+  
+</ul>
+<hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  
+  
+  var disqus_shortname = 'axonsarefun';
+  
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+</body>
+
+</html>

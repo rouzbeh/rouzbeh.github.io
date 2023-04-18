@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+        <title>Axons are fun</title>
+        <description>Axons are fun - </description>
+        <link>http://neishabouri.net</link>
+        <atom:link href="http://neishabouri.net/rss.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Tue, 18 Apr 2023 13:52:56 +0000</lastBuildDate>
+        <pubDate>Tue, 18 Apr 2023 13:52:56 +0000</pubDate>
+        <ttl>60</ttl>
+
+
+        <item>
+                <title>Tips and tricks for creating figures in tikz</title>
+                <description>
+&lt;p&gt;This post is a continuation of &lt;a href=&quot;/tips/2014/01/22/creating-publication-quality-figures&quot;&gt;creating publication quality figures&lt;/a&gt;. As you might imagine, the process of creating figures using &lt;em&gt;matlab2tikz&lt;/em&gt; is not always as smooth as in the case of simple figures. I have come across a few bugs, and here I will try to present simple workarounds for most cases.&lt;/p&gt;
+
+&lt;h3 id=&quot;bar-graphs&quot;&gt;Bar graphs&lt;/h3&gt;
+&lt;p&gt;Bar graphs generated using different commands are treated differently. Exporting a simple bar graph created by:&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;matlab2tikz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bar.tikz'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'showInfo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'parseStrings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'standalone'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'height'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'width'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'6cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;results in the following compiled pdf figure:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tikz2/bar.png&quot; alt=&quot;Bar plot&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But, if we use a command such as &lt;em&gt;hist&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;hist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;matlab2tikz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'hist.tikz'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'showInfo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'parseStrings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'standalone'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'height'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'width'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'6cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The generated pdf figure will be somehow different from what we expect:
+&lt;img src=&quot;/assets/images/tikz2/hist.png&quot; alt=&quot;hist.png&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a documented &lt;a href=&quot;https://github.com/nschloe/matlab2tikz/issues/294&quot;&gt;bug&lt;/a&gt; in matlab2tikz. In most cases, it can be mediated by using the &lt;em&gt;bar&lt;/em&gt; command instead of the &lt;em&gt;hist&lt;/em&gt; for drawing the figure:&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nelements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;hist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nelements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;matlab2tikz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'hist_bar.tikz'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'showInfo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'parseStrings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'standalone'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'height'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'width'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'6cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So that we get the expected figure:
+&lt;img src=&quot;/assets/images/tikz2/hist_bar.png&quot; alt=&quot;hist_bar.png&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;figure-alignment&quot;&gt;Figure alignment&lt;/h3&gt;
+&lt;p&gt;The width and height variables set when running matlab2tikz refer to the width and height of each axis, and not the width and height of the whole figure (including labels, tick labels, etc.). This can results in figures being misaligned, as is the case of the last figure in the &lt;a href=&quot;/tips/2014/01/22/creating-publication-quality-figures&quot;&gt;previous post&lt;/a&gt;. This problem is more severe in the case of figures with multiple subfigures. One way of getting rid of this issue is by using a fixed width for tick labels on the y-axis. This can be accomplished by adding the specifying the width inside the figure:&lt;/p&gt;
+
+&lt;div class=&quot;language-TeX highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\documentclass&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[a4paper]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;article&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[utf8]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;inputenc&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;subfig,float&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[english]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;babel&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;tikz, pgfplots&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[font=normal,labelfont=bf]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;caption&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\pgfplotsset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;% Here we specify options for all figures in the document&lt;/span&gt;
+  compat=1.8, &lt;span class=&quot;c&quot;&gt;% Which version of pgfplots do we want to use?&lt;/span&gt;
+  legend style =
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;font=&lt;span class=&quot;k&quot;&gt;\small\sffamily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  label style = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;font=&lt;span class=&quot;k&quot;&gt;\small\sffamily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{document}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\newlength\figureheight&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\newlength\figurewidth&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{figure}&lt;/span&gt;[h]
+&lt;span class=&quot;c&quot;&gt;% y-axis tick label width&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\pgfplotsset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;yticklabel style=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;text width=3em,align=right&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\subfloat&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[][Our figure]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\setlength\figureheight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.3&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;\setlength\figurewidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.8&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fig8.tikz&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\subfloat&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[][Our figure, with a different size]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;\setlength\figureheight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.6&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;\setlength\figurewidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.8&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fig8.tikz&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;nt&quot;&gt;\end{figure}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{document}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Regenerating our latex document now results in perfectly aligned figures:
+&lt;img src=&quot;/assets/images/tikz2/doc.png&quot; alt=&quot;doc.png&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;subfigures&quot;&gt;Subfigures&lt;/h3&gt;
+&lt;p&gt;There are two ways to generate subfigure using this method.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In Matlab&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We can generate a figure with subfigures in Matlab and save it as one figure.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In LaTeX&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The other solution is to export each subfigure independently, and put them together in Matlab. I personally prefer this method
+because it gives me the highest amount of control over the presentation of subfigure, and allows fancy tricks such as referencing subfigures.&lt;/p&gt;
+
+&lt;p&gt;An example of the second method is already shown in the previous section. We can improve it by making sure that subfigure numbers are written as required by most journals. I found the following command on &lt;a href=&quot;http://www.latex-community.org/know-how/latex/51-latex-math-science/280-formatting-latex-articles-for-biology-journals&quot;&gt;this great page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-TeX highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;% set package options&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\captionsetup&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[subfloat]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;position=top,singlelinecheck=false,labelfont=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;normalsize,sf&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  labelformat=simple,listofformat=subparens,aboveskip=0pt,parskip=0pt,farskip=5pt,
+  captionskip=0pt&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;% customize subfigure label to capitals&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\renewcommand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\thesubfigure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\textbf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\Alph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;subfigure&lt;span class=&quot;p&quot;&gt;}}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Adding this command right before our figure in the LaTeX document results in:
+&lt;img src=&quot;/assets/images/tikz2/doc2.png&quot; alt=&quot;doc1.png&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;cache-generated-figures&quot;&gt;Cache generated figures&lt;/h3&gt;
+&lt;p&gt;Generating figures from tikz files is a relatively expensive (read &lt;em&gt;long&lt;/em&gt;) operation. If you are working on one figure, it might be
+annoying to have to wait for all the other figures in your document to be generated as well. Fortunately, LaTeX can save generated figures as independent pdf files, and include them automatically instead of regenerating them from scratch.&lt;/p&gt;
+
+&lt;p&gt;Create a folder next to your LaTeX document called autofigs, and add this line to the header (before &lt;em&gt;\begin{document}&lt;/em&gt;) of the latex document&lt;/p&gt;
+
+&lt;div class=&quot;language-TeX highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\usetikzlibrary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;external&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\tikzset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;external/system call=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lualatex
+    &lt;span class=&quot;k&quot;&gt;\tikzexternalcheckshellescape&lt;/span&gt; -halt-on-error
+    -interaction=batchmode -jobname &quot;&lt;span class=&quot;k&quot;&gt;\image&lt;/span&gt;&quot; &quot;&lt;span class=&quot;k&quot;&gt;\texsource&lt;/span&gt;&quot;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\tikzexternalize&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[prefix=autofigs/]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And make sure to compile the resulting document using the &lt;em&gt;–shell-escape&lt;/em&gt; option:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pdflatex &lt;span class=&quot;nt&quot;&gt;--shell-escape&lt;/span&gt; doc.tex
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once compiled, the autofigs folder will contain pdf files, one per figure. Recompiling the document will not require regeneration of all figures, and is therefore much faster.&lt;/p&gt;
+
+&lt;p&gt;There is one caveat though. Changes in tikz files are not automatically detected. If you want a figure to be changed you will need to delete the corresponding files in the autofigs folder.&lt;/p&gt;
+</description>
+                <link>http://neishabouri.net/tips/2014/01/27/tips-and-tricks-for-creating-figures-in-tikz</link>
+                <guid>http://neishabouri.net/tips/2014/01/27/tips-and-tricks-for-creating-figures-in-tikz</guid>
+                <pubDate>Mon, 27 Jan 2014 00:00:00 +0000</pubDate>
+        </item>
+
+        <item>
+                <title>Creating publication quality figures</title>
+                <description>
+&lt;p&gt;One of the most annoying parts of writing publishable research material is making figures. Although it may seem rather simple to make a figures from, say, a spreadsheet program, systematic generation of high-quality figures is not that easy. I decided to write this post as a guide to my fellow lab members, and thought it may be useful to other researchers as well. The system described here is mainly based on the excellent &lt;a href=&quot;https://github.com/matlab2tikz/matlab2tikz&quot;&gt;matlab2tikz&lt;/a&gt; package.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-hard-is-it-to-make-a-nice-figure-out-of-matlab&quot;&gt;How hard is it to make a nice figure out of Matlab?&lt;/h3&gt;
+
+&lt;p&gt;I am going to argue that the answer is &lt;strong&gt;very hard&lt;/strong&gt;. Now of course anyone having used Matlab knows of the &lt;em&gt;plot&lt;/em&gt; and &lt;em&gt;saveas&lt;/em&gt; functions, and is able to quickly produce a figure using something like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.*&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'X [m]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Y [s]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;saveas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fig1.jpg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Which results in the following image.
+&lt;img src=&quot;/assets/images/tikz/fig1.jpg&quot; alt=&quot;fig1&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This figure is certainly fine, but the fonts are too small, not to mention ugly, and the line is too thin. This can of course be remedied by using the export setup feature before saving the figure. Loading the default presentation parameters, for instance, and saving as before, gives us the following image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tikz/fig2.jpg&quot; alt=&quot;fig2&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is better. The fonts look better, and the line is thick enough to be easily seen. This figure could almost be put in a poster. But as always, the devil is in the details. The first problem we notice is the jpg compression. On a poster, this will be really noticeable. So let’s use a loss-less format, like png.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tikz/fig3.png&quot; alt=&quot;fig3&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now this we could put in a poster… maybe. We may still need to change the font to something like Helvetica to be in accordance with the rest of the text. But for the most part, this is probably fine. If we want to be really picky, we can always remove all text from this figure.&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;gca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'YTickLabel'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[])&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;gca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XTickLabel'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,[])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This way we can insert all the text (tick labels, axis labels, etc.) directly in whatever program we use for making the poster. I made many of my posters in this way, except that I used vector graphics.&lt;/p&gt;
+
+&lt;h3 id=&quot;vector-graphics&quot;&gt;Vector graphics&lt;/h3&gt;
+
+&lt;p&gt;So far, we used raster formats to save our figure. In raster formats (bitmap, jpeg, png, gif, tiff etc.), the colour of each pixel in the image is independently stored. A bitmap image, for instance, is simply an array of colours, each for one pixel of the image. &lt;a href=&quot;https://en.wikipedia.org/wiki/Vector_graphics&quot;&gt;Vector graphics&lt;/a&gt;, on the other hand, store data about how the image was generated. For example, a vector image file can simple contain a line telling the viewer to draw a circle, instead of defining the value of all pixels in the image.&lt;/p&gt;
+
+&lt;p&gt;The great advantage of vector formats over raster formats is the the former can be arbitrarily resized without any loss in quality. If our figure was smaller, resizing it to be larger would cause it to look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tikz/fig4.png&quot; alt=&quot;fig4&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Those jagged line (steps) are due to the resizing of the image. We can avoid them by storing our figure in a vectorial format, such as svg. Matlab can not do this out of the box, but we can use an external script for this. One such script can be found &lt;a href=&quot;http://www.mathworks.com/matlabcentral/fileexchange/7401-scalable-vector-graphics-svg-export-of-figures&quot;&gt;here&lt;/a&gt;. The same figure saved as an svg image looks like this:
+&lt;img src=&quot;/assets/images/tikz/fig5.svg&quot; alt=&quot;fig5&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So here we have it. Make Matlab figures. Set the right options (remove all text, change line width, etc.). Save them as vector graphics (&lt;em&gt;eps&lt;/em&gt; is fine, and included in matlab). Add text accordingly. If you are using Windows, you can also copy and paste Matlab figures directly into powerpoint or word. This works for the most part pretty well and you can also safely resize the resulting figure directly in powerpoint. I don’t use windows, so I usually used the eps format.&lt;/p&gt;
+
+&lt;p&gt;There are other problems associated with this approach. There is a lot of manual work involved, which makes the process very error-prone. In addition, adding the text externally is really only feasible for a poster. If you are writing a document, either in a word processor or using LaTeX, this becomes impractical. Another problem with this approach is visible in the last figure. Resizing the figure also resized the lines, points, and any text in the figure. In the last figure, the line is way too thick. This means that the figures need to be created at the right size inside Matlab, before being exported. This means that figures can not be made once, and used for different posters/papers/etc.&lt;/p&gt;
+
+&lt;p&gt;These problems led me to use tikz for figures in my thesis. In the rest of this post, I will explain the basics of using tikz to create a figure and including tikz figures inside LaTeX documents.&lt;/p&gt;
+
+&lt;h3 id=&quot;making-figures-with-tikz&quot;&gt;Making figures with tikz&lt;/h3&gt;
+
+&lt;p&gt;Here is the basic code to generate and export our figure to tikz.&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'defaulttextinterpreter'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'none'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;% Prevents Matlab from trying to&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;% interpret latex string.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'X [m]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Y [s]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cleanfigure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;matlab2tikz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fig6.tikz'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'showInfo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'parseStrings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'standalone'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'height'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'width'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'6cm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Running this chuck of code will give us a tikz file. A tikz file basically contains instructions that can be understood by a latex
+interpreter to produce an image. In this case, the tikz file uses another package, &lt;em&gt;pgfplot&lt;/em&gt;, which provides commands to easily draw axes and coordinates. Our tikz file contains :&lt;/p&gt;
+
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;% This file was created by matlab2tikz v0.4.4 running on MATLAB 8.2.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% Copyright (c) 2008--2013, Nico Schlömer &amp;lt;nico.schloemer@gmail.com&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% All rights reserved.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\documentclass&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[tikz]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;standalone&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;pgfplots&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\pgfplotsset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;compat=newest&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usetikzlibrary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;plotmarks&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;amsmath&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{document}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{tikzpicture}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{axis}&lt;/span&gt;[&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+width=6cm,
+height=5cm,
+scale only axis,
+xmin=0,
+xmax=1,
+xlabel=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;X [m]&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+ymin=-0.4,
+ymax=1.2,
+ylabel=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Y [s]&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+]
+&lt;span class=&quot;k&quot;&gt;\addplot&lt;/span&gt; [
+color=blue,
+solid,
+forget plot
+]
+table[row sep=crcr]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+0 0.05376671395461&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.01 0.193388501459509&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.02 -0.205884686100365&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.03 0.116217332036812&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.04 0.0718765239858981&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.05 -0.0807688296305274&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.06 0.0166407977694316&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.07 0.104262446653865&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.08 0.437839693972576&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.09 0.366943702988488&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+...
+0.99 0.810532115854488&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+1 1.08403755297539&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;;
+&lt;span class=&quot;nt&quot;&gt;\end{axis}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{tikzpicture}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{document}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is actually human readable. You could, if you wanted to, dig in and change anything about the figure. Since it is a plain-text file, you could also automate these changes. Imagine that instead of putting voltage on one of your axes, you wanted to use potential. You could do that for all the figures in one folder by running a command like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;sed 's/voltage/potential/g' *.tikz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can also use all sorts of tools that work nicely with plain-text files, such as version control systems. The tikz file can be converted into a pdf file by running on the command line (not in matlab):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Bash&quot;&gt;lualatex fig6.tikz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates a pdf &lt;a href=&quot;/assets/images/tikz/fig6.pdf&quot;&gt;file&lt;/a&gt;, that looks like this:
+&lt;img src=&quot;/assets/images/tikz/fig6.png&quot; alt=&quot;fig6&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Crucially, changing the width and height on the tikz file, and regenerating the pdf file results in a figure that looks as good. If
+we divide the height by 2, we get the following &lt;a href=&quot;/assets/images/tikz/fig7.pdf&quot;&gt;figure&lt;/a&gt;:
+&lt;img src=&quot;/assets/images/tikz/fig7.png&quot; alt=&quot;fig7&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The width of the line, the shape and the placement of text labels are all preserved perfectly, and of course, the pdf being a vectorial format, there is no jaggedness or steps.&lt;/p&gt;
+
+&lt;h3 id=&quot;inside-a-latex-document&quot;&gt;Inside a LaTeX document&lt;/h3&gt;
+
+&lt;p&gt;The advantages of this workflow, even though the generated figures are gorgeous, are not obvious so far. Instead of having a tikz file, we could also have saved the matlab figure as &lt;em&gt;.fig&lt;/em&gt; file and exported from it as a &lt;em&gt;.tiff&lt;/em&gt; file in the right size anytime we needed to. With the tikz format, we have to modify the &lt;em&gt;.tikz&lt;/em&gt; file and recompile it every time we need a different sized figure. This can be done programmatically thanks to the plain-text format, but is far from being really practical.&lt;/p&gt;
+
+&lt;p&gt;Where this method really shows its potential is inside a LaTeX document. Instead of compiling the figure into a pdf file to be
+included in the pdf generated by LaTeX, you can import the tikz file directly. First, we need to generate a non-standalone tikz file. This can be done by running the matlab2tikz command with the standalone option set to false:&lt;/p&gt;
+
+&lt;div class=&quot;language-matlab highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;matlab2tikz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fig8.tikz'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'showInfo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'parseStrings'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'standalone'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'height'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\figureheight'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'width'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'\figurewidth'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that instead of specifying a width and a height, we give two LaTeX comamnds: \figurewidth and \figureheight. These are not standard latex commands. We will define them in our LaTeX document. The generated tikz file contains:&lt;/p&gt;
+
+&lt;div class=&quot;language-TeX highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;% This file was created by matlab2tikz v0.4.4 running on MATLAB 8.2.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% Copyright (c) 2008--2013, Nico Schlömer &amp;lt;nico.schloemer@gmail.com&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% All rights reserved.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{tikzpicture}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{axis}&lt;/span&gt;[&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+width=&lt;span class=&quot;k&quot;&gt;\figurewidth&lt;/span&gt;,
+height=&lt;span class=&quot;k&quot;&gt;\figureheight&lt;/span&gt;,
+scale only axis,
+xmin=0,
+xmax=1,
+xlabel=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;X [m]&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+ymin=-0.4,
+ymax=1.2,
+ylabel=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Y [s]&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+]
+&lt;span class=&quot;k&quot;&gt;\addplot&lt;/span&gt; [
+color=blue,
+solid,
+forget plot
+]
+table[row sep=crcr]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+0 0.05376671395461&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.01 0.193388501459509&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+0.02 -0.205884686100365&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+...
+0.99 0.810532115854488&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+1 1.08403755297539&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;;
+&lt;span class=&quot;nt&quot;&gt;\end{axis}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{tikzpicture}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We cannot directly compile this file into a pdf document. Instead, this file can be included inside a LaTeX document:&lt;/p&gt;
+
+&lt;div class=&quot;language-TeX highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\documentclass&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[a4paper]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;article&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[utf8]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;inputenc&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[english]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;babel&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;tikz, pgfplots&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;% Necessary package for tikz&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[font=normal,labelfont=bf]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;caption&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\pgfplotsset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;% Here we specify options for all figures in the document&lt;/span&gt;
+  compat=1.8, &lt;span class=&quot;c&quot;&gt;% Which version of pgfplots do we want to use?&lt;/span&gt;
+  legend style = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;font=&lt;span class=&quot;k&quot;&gt;\small\sffamily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, &lt;span class=&quot;c&quot;&gt;% Legends in a sans-serif font&lt;/span&gt;
+  label style = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;font=&lt;span class=&quot;k&quot;&gt;\small\sffamily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;% Labels in a sans-serif font&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{document}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\newlength\figureheight&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\newlength\figurewidth&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{figure}&lt;/span&gt;[h]
+  &lt;span class=&quot;k&quot;&gt;\setlength\figureheight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.3&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\setlength\figurewidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.8&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fig8.tikz&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\caption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fig:1&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;Our figure&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{figure}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{figure}&lt;/span&gt;[h]
+  &lt;span class=&quot;k&quot;&gt;\setlength\figureheight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.6&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\setlength\figurewidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.8&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fig8.tikz&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;\caption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;fig:2&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;Our figure, with a different size&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{figure}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\end{document}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are a few remarkable things about this document. First of all, notice that we define parameter for the figure inside the LaTeX document. For instance, we decide to use a sans-serif font for all the figures in the document, as opposed to the one used in the standalone case. We also define two latex variables, &lt;em&gt;\figrelength&lt;/em&gt; and &lt;em&gt;\figureheight&lt;/em&gt;, using the &lt;em&gt;\newlength&lt;/em&gt; command. We can change the values of these variable before we include each figure (using &lt;em&gt;\input&lt;/em&gt;). This is how we can create figures with different heights from the same original tikz file. Compiling this LaTeX document creates this pdf &lt;a href=&quot;/assets/images/tikz/fig8.pdf&quot;&gt;file&lt;/a&gt;:
+&lt;img src=&quot;/assets/images/tikz/fig8.png&quot; alt=&quot;fig7&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice how not only do we have the same figure with two different sizes although we used the same tikz file, but the two figures are both perfectly typeset. Additionally, the lower figure has more ticks on the Y-axis, since its height allows enough space for the additional ticks.&lt;/p&gt;
+</description>
+                <link>http://neishabouri.net/tips/2014/01/22/creating-publication-quality-figures</link>
+                <guid>http://neishabouri.net/tips/2014/01/22/creating-publication-quality-figures</guid>
+                <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+        </item>
+
+        <item>
+                <title>Ici c'est le chaudron</title>
+                <description>
+&lt;p&gt;Les frères de Delph’, originaires de Lyon, sont de grands fans de l’OL. Bien naturellement, elle a choisi de se déclarer supportrice de Saint-Étienne (parce que …) et s’est engagée dans une guerre de longue date, qui atteint son apogée chaque année au moment de Noël. Il y a quelques années, elle leur a offert des drapeaux de Saint-Étienne. En représaille, ils l’ont fait couché des draps OL. L’année suivante, elle a donc décoré leurs chambre tout en vert. Et pour prendre leur revanche, ils lui ont acheté une action de l’OL. Cette dernière prouesse a eu le mérite de calmer les hostilités pour quelques années.&lt;/p&gt;
+
+&lt;p&gt;Cette année, elle m’a demandé de l’aide pour enfin trouver une réponse. Inspiré par &lt;a href=&quot;http://www.ex-parrot.com/pete/upside-down-ternet.html&quot;&gt;cette page&lt;/a&gt;, et parce que j’avais un vieux &lt;a href=&quot;http://www.fon.com&quot;&gt;Fonera&lt;/a&gt; avec dd-wrt qui prenait la poussière, nous nous sommes mis a chercher une idée. L’idée de base était évidemment de pervertir leur connexion à internet. Tout ce que nous avions besoin de faire était de brancher notre routeur à leur modem ADSL (une livebox), couper le réseau wifi de cette dernière (heureusement, personne ne change les mots de passe admin par défaut) et créer un autre réseau avec le même nom et la même clé. Une fois le changement effectué, tout le traffic internet non-chiffré passe entre nos mains, et ils n’y voient que du feu.&lt;/p&gt;
+
+&lt;p&gt;La question était alors de savoir ce que nous en ferions après. L’idée de départ était seulement d’utiliser le petit routeur. Mais un serveur proxy était bien trop lourd pour une si petite machine. Et quand bien même elle aurait été capable de le faire tourner, je n’avais pas envie de commencer à mettre en place toute une chaîne de compilation, et je n’ai trouvé aucune image précompilée. Du coup je me suis orienté vers l’idée d’un serveur DNS qui redirigerait toute requête vers le site de l’AS Saint-Étienne, mais c’était un peu trop basique.&lt;/p&gt;
+
+&lt;p&gt;On a donc fini par ajouter un maillon à la chaîne. Toutes les requêtes allaient être dirigées vers mon petit serveur domestique (un mac mini G4 de récup’ qui tourne sous Linux et est particulièrement silencieux) qui lui est parfaitement capable de tourner n’importe quel service web, dont Squid. Le reste était facile à faire, avec un peu de code puisé &lt;a href=&quot;https://www.funkypenguin.co.nz/tutorial/april-fools-pranks-with-a-squid-proxy-server/&quot;&gt;ici&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Après un petit quart d’heure passé à fignoler les branchements sur place la veille de l’opération, voici ce que nos victimes ont découvert en allant sur le site du Monde:
+&lt;img src=&quot;/assets/images/chaudron/lemonde.png&quot; alt=&quot;Le site du monde vandalisé&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ou sur celui du Figaro:
+&lt;img src=&quot;/assets/images/chaudron/lefigaro.png&quot; alt=&quot;Le figaro selon proxy&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Le plus drôle était que nous n’avons pas été immédiatement soupçonnés! La réaction immédiate des victimes a été de déclarer qu’un virus avait pénétré le téléphone de la première victime, qui s’est mis à chercher sur google comment se débarasser d’un «fils de &lt;em&gt;**&lt;/em&gt; de Stéphanois qui a hacké mon iphone». Mais en découvrant le même phénomène sur tous les autres appareils connectés en wifi, et voyant les deux coupables morts de rire, le pot aux roses fut rapidement découvert.&lt;/p&gt;
+
+&lt;p&gt;En tout cas, c’était aussi une bonne façon de rappeller qu’à moins d’utiliser un protocole sécurisé, (le &lt;a href=&quot;https://en.wikipedia.org/wiki/HTTP_Secure&quot;&gt;https&lt;/a&gt; toutes vos communications sur internet sont visibles par tout le monde (votre FAI, le gouvernement, les autres gouvernements, les constructeurs des équipements réseau, ou le voisin qui a deviné votre clé wifi). Utiliser des extensions comme &lt;a href=&quot;https://www.eff.org/https-everywhere&quot;&gt;https-everywhere&lt;/a&gt; vous protégera un peu en forçant le https sur les sites qui le permettent. Dans le cas contraire, comme c’était le cas jusqu’à très récemment sur l’AppStore d’Apple, bonne chance!&lt;/p&gt;
+</description>
+                <link>http://neishabouri.net/french/2013/02/21/ici-cest-le-chaudron</link>
+                <guid>http://neishabouri.net/french/2013/02/21/ici-cest-le-chaudron</guid>
+                <pubDate>Thu, 21 Feb 2013 00:00:00 +0000</pubDate>
+        </item>
+
+        <item>
+                <title>Dressing room statistics</title>
+                <description>
+&lt;p&gt;Last weekend, one of my friends and I found ourselves waiting near the exit of dressing rooms in a busy London clothes shop. In that shop, anyone going in the dressing rooms was given a small plastic panel with a number corresponding to the number of articles of clothing she wanted to test. Each customer was only allowed to bring 6 articles inside. At the exit, an employee takes the small piece of plastic back, along with all unwanted items which will then be put back on shelves and racks inside the store.&lt;/p&gt;
+
+&lt;p&gt;As we were standing right next to that lady, we started to notice that very few customers would actually buy anything. We saw a lot of people coming out of the dressing room with 4,5 or even 6 articles of clothing, and give them all back. Being bored, we thought it would be a good idea to actually record this data, and analyse them.&lt;/p&gt;
+
+&lt;p&gt;We took notes of how many items were tried buy each person, and how many were kept. In the approximately 20 minutes we spent there, we saw 75 customers come out of dressing rooms. Here is the histogram of the number of items they had brought in (according to the small plastic panel).
+&lt;img src=&quot;/assets/images/dressing/histin.png&quot; alt=&quot;Histogram of the number of articles taken inside&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can already see some interesting trends. There are two peaks in this histogram, suggesting two types of customers : Those who bring few (1 or 2) articles, and those who want to try many items on (5 or 6). In comparison, few customers bring 3 or 4 items. But how does this translate into sales? Let’s have a look at the histogram of items kept.&amp;lt;/p&amp;gt;
+&lt;img src=&quot;/assets/images/dressing/histout.png&quot; alt=&quot;Histogram of the number of articles kept&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, the number of articles finally kept does not really look like the number of articles brought into the dressing room. In fact, the number of articles kept can be closely matched by what we call the gaussian distribution. That is the redline you can see on the figure. It is very frequently encountered in nature. So frequently, in fact, that we also call it the normal distribution.&lt;/p&gt;
+
+&lt;p&gt;So we know that some people go in with a lot of clothes, and some with very few. We also know that the number of articles kept obeys the normal distribution. But what we would like to know is how does the number of articles brought in correlate with the number of articles brought out. In other words, we want to know if we can predict how many articles of clothing someone will end up buying based on how many the bring into the dressing room.&lt;/p&gt;
+
+&lt;p&gt;We can accomplish this by quite easily. In the following graph, you can see the mean number of articles kept, as a function of number of articles brought in the dressing room :
+&lt;img src=&quot;/assets/images/dressing/means.png&quot; alt=&quot;Kept/Brought in&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The numbers fit nicely on a line, with a slope of 0.28 (drawn in red). Roughly speaking, for every 100 items tried on in that shop’s dressing room, only 28 are bought. The remaining 72 have to be put back on shelves by the staff. We can also see that the number of clothe brought in can be a pretty good indicator of how many will be bought. The more items brought in, the more items are kept.&lt;/p&gt;
+
+&lt;p&gt;But, while we were recording the data, we actually noticed a pretty large number of people who actually did not seem to want to buy anything. They seemed just to be interested in trying clothes with their friends, and giving them all back afterwards. And we wondered, do they somehow skew our data? Is there something to be learnt by eliminating them from our dataset? Have a look at this next graph.
+&lt;img src=&quot;/assets/images/dressing/means2.png&quot; alt=&quot;Kept/Brought in&quot; class=&quot;img-fluid bg-white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here you can see the same data than on the last graph, but we have added another curve. In green you can see the mean number of articles bought if we exclude those who do not buy anything. There is something funny about this graph. It seems that people who bring in 4 items actually end up buying less than people who brought in only 3. I do not know if there is any truth behind this observation, or if it is just due to a small number of samples. other than that, the trend of “The more you bring in, the more you buy” seems to hold.&lt;/p&gt;
+</description>
+                <link>http://neishabouri.net/mathematics/2012/05/14/dressing-room-statistics</link>
+                <guid>http://neishabouri.net/mathematics/2012/05/14/dressing-room-statistics</guid>
+                <pubDate>Mon, 14 May 2012 00:00:00 +0000</pubDate>
+        </item>
+
+        <item>
+                <title>Sondages et Elections</title>
+                <description>
+&lt;p&gt;À chaque élection, la question des sondages, et de la confiance qu’il faut leur accorder est une des questions centrale. Nous savons
+qu’il peuvent se tromper, et nous avons en tête le chiffre des 3% pour un échantillon de 1000 individus, d’après un article paru dans le monde. Mais d’où vient ce chiffre, et que dire des échantillons de 500 (comme dans les sondages faits juste après le débat) ou moins (par exemple ceux portant sur les reports de voix).&lt;/p&gt;
+
+&lt;p&gt;On peut répondre à ces questions sans faire de calculs compliqués grâce à des simulations. En utilisant les données du &lt;a href=&quot;http://elections.lefigaro.fr/presidentielle-2012/2012/05/04/01039-20120504ARTFIG00382-sondages-l-ecart-entre-sarkozy-et-hollande-se-reduit.php&quot;&gt;dernier sondage&lt;/a&gt; (47.5% pour Sarkozy) et avec un échantillon de 1000 personnes, voici ce que l’on obtient:
+&lt;img src=&quot;/assets/images/plot.jpg&quot; alt=&quot;Courbe de probabilité&quot; class=&quot;img-fluid&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cette courbe montre la probabilité des différents scores possibles le jour du scrutin. Le résultat le plus probable est bien entendu celui donné par le sondage, mais les résultats proches de celui-ci sont raisonnablement possibles. Cette cloche représente le degré de confiance qu’on peut accorder à ce sondage. Plus l’échantillon est important, moins cette cloche sera large.&lt;/p&gt;
+
+&lt;p&gt;Le chiffre qui nous intéresse est la probabilité que Nicolas Sarkozy gagne le jour de l’élection, quelque soit le score. En additionnant les probabilités de tous les scores supérieurs à 50%, on arrive à 7%. Donc, il y a 7 chances sur 100 pour que Sarkozy soit en fait le gagnant. Remarquez que ce résultat est très sensible à la taille de l’échantillon. Si on n’avait que 500 sondés, la courbe resseblerait à ça :
+&lt;img src=&quot;/assets/images/plot2.jpg&quot; alt=&quot;Courbe de probabilité&quot; class=&quot;img-fluid&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La cloche est plus large, traduisant une plus grande incertitude. La probabilité de victoire de Sarkozy serait alors de plus de 30%. Autant dire que le sondage ne sert pas à grande chose. Au passage, remarquez que même avec 1000 echantillons, c’est assez ridicule de prétendre mesurer des variations de 0,5%; à moins que les sondeurs connaissent des algorithmes relevant de la magie.&lt;/p&gt;
+
+&lt;p&gt;Nous (&lt;a href=&quot;http://www.faisallab.com&quot;&gt;Aldo Faisal&lt;/a&gt; et moi) avons mis au point un petit script &lt;a href=&quot;http://www.gnu.org/software/octave/&quot;&gt;octave&lt;/a&gt; (ou Matlab) qui nous permet de visualiser la distribution de probabilité de la popularité réélle d’un candidat en fonction de sa popularité dans un échantillon donné. Il suffit de renseigner la taille de l’échantillon utilise pour le sondage (en general entre 500 et 1000) et le résultat de ce sondage (la proportion d’électeurs déclarant voter pour Sarkozy, aux alentours de 47%) et lancer le script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Matlab&quot;&gt;clear
+close all
+
+echantillon = 500;
+observation = 0.475
+
+p=[0:0.001:1];
+
+figure,
+votesPolledSarko = round(observation*echantillon)
+totalPolled = echantillon;
+for ll=1:length(p)
+  pSarko(ll) = binopdf(votesPolledSarko,totalPolled,p(ll));
+end
+
+plot(p*100,pSarko/sum(pSarko),'-')
+probOfSarkoWin = sum(pSarko(floor(end/2):end))
+axis tight
+t = sprintf('Prob that Sarkzy may win is %f.'...
+  probOfSarkoWin);
+title(t)
+xlabel('Final score')
+ylabel('Probability')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Vous pouvez utiliser ce script pour générer ces courbes, ou renseigner d’autres données. Il est dans le domaine public.&lt;/p&gt;
+</description>
+                <link>http://neishabouri.net/mathematics/2012/05/04/sondages-et-elections</link>
+                <guid>http://neishabouri.net/mathematics/2012/05/04/sondages-et-elections</guid>
+                <pubDate>Fri, 04 May 2012 00:00:00 +0000</pubDate>
+        </item>
+
+
+</channel>
+</rss>
