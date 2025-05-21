@@ -141,11 +141,12 @@
   volume   = {8},
   year     = {2014}
 }
+
 @article{lee_comparative_2023,
   title        = {Comparative {{Analysis}} and {{Conversion Between Actiwatch}} and {{ActiGraph Open-Source Counts}}},
   author       = {Lee, Paul H. and Neishabouri, Ali and Tse, Andy C. Y. and Guo, Christine C.},
   date         = {2023-08-21},
-  journaltitle = {Journal for the Measurement of Physical Behaviour},
+  journal= {Journal for the Measurement of Physical Behaviour},
   volume       = {-1},
   pages        = {1--6},
   publisher    = {Human Kinetics},
@@ -157,14 +158,14 @@
   issue        = {aop},
   langid       = {english},
   keywords     = {notion},
-  file         = {/Users/ali.neishabouri/Zotero/storage/AZLRWR32/Lee et al. - 2023 - Comparative Analysis and Conversion Between Actiwa.pdf}
+  year         = {2023}
 }
 
 @article{neishabouri_quantification_2022,
   title        = {Quantification of Acceleration as Activity Counts in {{ActiGraph}} Wearable},
   author       = {Neishabouri, Ali and Nguyen, Joe and Samuelsson, John and Guthrie, Tyler and Biggs, Matt and Wyatt, Jeremy and Cross, Doug and Karas, Marta and Migueles, Jairo H. and Khan, Sheraz and Guo, Christine C.},
   date         = {2022-07-13},
-  journaltitle = {Scientific Reports},
+  journal= {Scientific Reports},
   shortjournal = {Sci Rep},
   volume       = {12},
   number       = {1},
@@ -177,7 +178,7 @@
   abstract     = {Digital clinical measures based on data collected by wearable devices have seen rapid growth in both clinical trials and healthcare. The widely-used measures based on wearables are epoch-based physical activity counts using accelerometer data. Even though activity counts have been the backbone of thousands of clinical and epidemiological studies, there are large variations of the algorithms that compute counts and their associated parameters—many of which have often been kept proprietary by device providers. This lack of transparency has hindered comparability between studies using different devices and limited their broader clinical applicability. ActiGraph devices have been the most-used wearable accelerometer devices for over two decades. Recognizing the importance of data transparency, interpretability and interoperability to both research and clinical use, we here describe the detailed counts algorithms of five generations of ActiGraph devices going back to the first AM7164 model, and publish the current counts algorithm in ActiGraph’s ActiLife and CentrePoint software as a standalone Python package for research use. We believe that this material will provide a useful resource for the research community, accelerate digital health science and facilitate clinical applications of wearable accelerometry.},
   langid       = {english},
   keywords     = {Computational platforms and environments,Data integration,Data processing,notion,Software},
-  file         = {/Users/ali.neishabouri/Zotero/storage/T7KP4RSE/Neishabouri et al. - 2022 - Quantification of acceleration as activity counts .pdf}
+  year         = {2022}
 }
 
 @article{neishabouri_walkthrough_2024,
@@ -186,18 +187,19 @@
   date     = {2024-09-03},
   doi      = {10.1123/jmpb.2023-0048},
   url      = {https://journals.humankinetics.com/view/journals/jmpb/7/1/article-jmpb.2023-0048.xml},
+  journal  = {Journal for the Measurement of Physical Behaviour},
   urldate  = {2024-09-04},
   abstract = {Activity counts have been used for over two decades with over 22,000 published scientific papers in public health and clinical research. ActiGraph recently released the algorithm for computing counts from raw accelerometer data as an open-source Python library, which is now ported by researchers to other languages, notably R. The current commentary presents historical overview of ActiGraph counts, and its development and evolution as a measure of physical activity. Further, we provide general recommendations on extracting counts from raw accelerometer data and discuss specific considerations with respect to device types, resampling, nonwear, axes orientations, and epoch length that may influence counts. Last, we provide a tutorial on how to use ActiGraph’s open-source Python library, agcounts, for consistent, accurate, and reproducible count. We expect this commentary will provide familiarity and transparency needed to adopt and produce activity counts in a consistent manner, allowing researchers to conduct statistical comparisons across multiple data sets and studies.},
   langid   = {english},
   keywords = {accelerometer,notion,open-source,physical activity,wearable},
-  file     = {/Users/ali.neishabouri/Zotero/storage/7KM7NTVC/Neishabouri et al. - 2024 - A Walkthrough of ActiGraph Counts.pdf}
+  year     = {2024}
 }
 
 @article{nunes_domain_2024,
   title        = {Domain {{Adversarial Convolutional Neural Network Improves}} the {{Accuracy}} and {{Generalizability}} of {{Wearable Sleep Assessment Technology}}},
   author       = {Nunes, Adonay S. and Patterson, Matthew R. and Gerstel, Dawid and Khan, Sheraz and Guo, Christine C. and Neishabouri, Ali},
   date         = {2024-01},
-  journaltitle = {Sensors},
+  journal= {Sensors},
   volume       = {24},
   number       = {24},
   pages        = {7982},
@@ -210,14 +212,14 @@
   issue        = {24},
   langid       = {english},
   keywords     = {accelerometer,deep learning,notion,sleep,wearable},
-  file         = {/Users/ali.neishabouri/Zotero/storage/UZU6M9GV/Nunes et al. - 2024 - Domain Adversarial Convolutional Neural Network Improves the Accuracy and Generalizability of Wearab.pdf}
+  year         = {2024}
 }
 
 @article{patterson_40_2023,
   title        = {40 Years of Actigraphy in Sleep Medicine and Current State of the Art Algorithms},
   author       = {Patterson, Matthew R. and Nunes, Adonay A. S. and Gerstel, Dawid and Pilkar, Rakesh and Guthrie, Tyler and Neishabouri, Ali and Guo, Christine C.},
   date         = {2023-03-24},
-  journaltitle = {npj Digital Medicine},
+  journal= {npj Digital Medicine},
   shortjournal = {npj Digit. Med.},
   volume       = {6},
   number       = {1},
@@ -229,13 +231,21 @@
   abstract     = {Abstract             For the last 40 years, actigraphy or wearable accelerometry has provided an objective, low-burden and ecologically valid approach to assess real-world sleep and circadian patterns, contributing valuable data to epidemiological and clinical insights on sleep and sleep disorders. The proper use of wearable technology in sleep research requires validated algorithms that can derive sleep outcomes from the sensor data. Since the publication of the first automated scoring algorithm by Webster in 1982, a variety of sleep algorithms have been developed and contributed to sleep research, including many recent ones that leverage machine learning and / or deep learning approaches. However, it remains unclear how these algorithms compare to each other on the same data set and if these modern data science approaches improve the analytical validity of sleep outcomes based on wrist-worn acceleration data. This work provides a systematic evaluation across 8 state-of-the-art sleep algorithms on a common sleep data set with polysomnography (PSG) as ground truth. Despite the inclusion of recently published complex algorithms, simple regression-based and heuristic algorithms demonstrated slightly superior performance in sleep-wake classification and sleep outcome estimation. The performance of complex machine learning and deep learning models seem to suffer from poor generalization. This independent and systematic analytical validation of sleep algorithms provides key evidence on the use of wearable digital health technologies for sleep research and care.},
   langid       = {english},
   keywords     = {notion},
-  file         = {/Users/ali.neishabouri/Zotero/storage/BCDJ7JJF/Patterson et al. - 2023 - 40 years of actigraphy in sleep medicine and curre.pdf}
+  year         = {2023}
 }
+
+@online{pilkar_performance_nodate,
+  title    = {Performance Analyses of Step-Counting Algorithms Using Wrist Accelerometry, 08 {{December}} 2022, {{PREPRINT}} ({{Version}} 2) Available at {{Research Square}} [{{https://doi.org/10.21203/rs.3.rs-2183645/v2]}}},
+  author   = {Pilkar, Rakesh and Gestrel, Dawid and Toole, Ethan and Patterson, Matthew R. and Neishabouri, Ali and Guo, Christine},
+  pubstate = {prepublished},
+  year     = {2022}
+}
+
 @article{pilkar_potential_2022,
   title        = {The {{Potential Of Accelerometry-Derived Gait Features For Assessing The Risk Of Falls In Older Adults}}},
   author       = {Pilkar, Rakesh and Sloan, Sarah and Guthrie, Tyler and Neishabouri, Ali and Guo, Christine},
   date         = {2022-12-01},
-  journaltitle = {Archives of Physical Medicine and Rehabilitation},
+  journal= {Archives of Physical Medicine and Rehabilitation},
   shortjournal = {Archives of Physical Medicine and Rehabilitation},
   volume       = {103},
   number       = {12},
@@ -247,5 +257,5 @@
   abstract     = {Research Objectives To investigate the usefulness of gait-related spectral features derived from accelerometry to assess the risk of falls in older adults (OA). Design Retrospective cohort. Setting Gait laboratory. Participants Publicly available data (Physionet.org) collected from 60 community-living OA categorized into either the Control Group (CG, n=34) or the Faller Group (FG, n=26) based on the self-reported history of falls (fallers: ≥ two falls in the previous year). Interventions N/A. Main Outcome Measures A total of 16 spectral features - mean frequency (fmean), median frequency (fmed), peak power spectral density (PSDp), and dominant frequency (fd) were derived from the tri-axial and the vector magnitude (VM) data recorded from a lower back-worn accelerometer during walking. The clinical outcomes included the Dynamic Gait Index (DGI), the Berg Balance Scale (BBS), and the Timed Up and Go (TUG) test. Results Mann-Whitney U tests showed that there was a significant difference in mean fd (anterior-posterior (AP) and VM (U=610.5, p=0.012), fmed (AP, VM) (U=590, p=0.028) between the groups. No significant group differences were found in BBS (p=0.285), TUG (p=0.109), and DGI (p=0.258). Pearson's correlation between the spectral features and the clinical outcomes showed that 13 of 16 spectral features for the FG were significantly correlated (p{$<$} 0.05) with the BBS, TUG, and DGI. No significant correlations were observed for the CG (p{$>$}0.05), except for fd (BBS), fmean (DGI, TUG), and PSDp (TUG). Conclusions The current evidence supports the sensitivity of the accelerometry features to isolate gait characteristics specific to fallers, where the clinical outcomes may suffer from subjectivity, lack of sensitivity, and ceiling effects. For the FG, strong correlations with the clinical outcomes suggest the agreement between the spectral features and the functional status. Author(s) Disclosures None.},
   langid       = {english},
   keywords     = {Aging,Fall-Risk,Gait,IMU,notion,Spectral Analysis},
-  file         = {/Users/ali.neishabouri/Zotero/storage/N2YJ5CHD/S0003999322014666.html}
+  year         = {2022}
 }

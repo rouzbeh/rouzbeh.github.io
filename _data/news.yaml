@@ -1,8 +1,19 @@
+- date: 01 July 2022
+  title: Publication on ActiGraph Counts Algorithm
+  body: >-
+    Co-authored a paper detailing the counts algorithms of five generations of ActiGraph devices, enhancing transparency and facilitating reproducibility in wearable accelerometry research. :contentReference[oaicite:1]{index=1}
+
+- date: 01 November 2021
+  title: Head of Data Science at ActiGraph
+  body: >-
+    I have joined ActiGraph as Head of Data Science. I lead a talented team focused on creating innovative digital biomarkers for clinical trials. Together, we aim to revolutionize digital health research by developing robust, scalable algorithms and platforms for wearable sensor data. :contentReference[oaicite:0]{index=0}
+
 - date : 01 July 2021
   title: Head of Data Science, Konectom
   body : >-
     I have had the privilege of joining Biogen Digital Health to work on Konectom, an app that 
-    aims to transform the way we monitor and assess neurological diseases. 
+    aims to transform the way we monitor and assess neurological diseases.
+
 - date : 01 September 2020
   title: R&D Engineer
   body : >-
