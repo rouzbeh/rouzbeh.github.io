@@ -12,8 +12,9 @@ pageorder: 3
 <a href="{{ BASE_PATH }}{{ post.url }}">
 <h2 class="post-title">
 {{ post.title }}
-<small>{{ post.date | date_to_long_string }}</small></h2>
+</h2>
 </a>
+<small>{{ post.date | date_to_long_string }}</small>
 {{ post.excerpt }}
 </div>
 {% endfor %}

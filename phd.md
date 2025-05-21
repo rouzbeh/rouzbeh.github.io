@@ -10,7 +10,7 @@ pageorder: 1
 
 
 ## Articles
-{% bibliography --query @article --sort-by year,month %}
+{% bibliography --query @article %}
 
 ## Conference abstracts and posters
 {% bibliography --query @inproceedings --sort-by year,month %}

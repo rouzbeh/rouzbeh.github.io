@@ -11,9 +11,11 @@ Last weekend, one of my friends and I found ourselves waiting near the exit of d
 As we were standing right next to that lady, we started to notice that very few customers would actually buy anything. We saw a lot of people coming out of the dressing room with 4,5 or even 6 articles of clothing, and give them all back. Being bored, we thought it would be a good idea to actually record this data, and analyse them.
 
 We took notes of how many items were tried buy each person, and how many were kept. In the approximately 20 minutes we spent there, we saw 75 customers come out of dressing rooms. Here is the histogram of the number of items they had brought in (according to the small plastic panel).
+
 ![Histogram of the number of articles taken inside]({{ BASE_PATH }}/assets/images/dressing/histin.png){: .img-fluid .bg-white }
 
-We can already see some interesting trends. There are two peaks in this histogram, suggesting two types of customers : Those who bring few (1 or 2) articles, and those who want to try many items on (5 or 6). In comparison, few customers bring 3 or 4 items. But how does this translate into sales? Let’s have a look at the histogram of items kept.</p>
+We can already see some interesting trends. There are two peaks in this histogram, suggesting two types of customers : Those who bring few (1 or 2) articles, and those who want to try many items on (5 or 6). In comparison, few customers bring 3 or 4 items. But how does this translate into sales? Let’s have a look at the histogram of items kept.
+
 ![Histogram of the number of articles kept]({{ BASE_PATH }}/assets/images/dressing/histout.png){: .img-fluid .bg-white }
 
 As you can see, the number of articles finally kept does not really look like the number of articles brought into the dressing room. In fact, the number of articles kept can be closely matched by what we call the gaussian distribution. That is the redline you can see on the figure. It is very frequently encountered in nature. So frequently, in fact, that we also call it the normal distribution.

@@ -14,14 +14,14 @@ This post is a continuation of [creating publication quality figures]({{ BASE_PA
 ### Bar graphs
 Bar graphs generated using different commands are treated differently. Exporting a simple bar graph created by:
 
-``` matlab
+{% highlight matlab %}
 x=[1,2,3];
 y=x;
 bar(x,y);
 matlab2tikz('bar.tikz', 'showInfo', false, ...
         'parseStrings',false,'standalone', true, ...
         'height', '5cm', 'width','6cm');
-```
+{% endhighlight %}
 
 results in the following compiled pdf figure:
 
@@ -29,27 +29,27 @@ results in the following compiled pdf figure:
 
 But, if we use a command such as *hist*:
 
-``` matlab
+{% highlight matlab %}
 x=randn(1000,1);
 hist(x);
 matlab2tikz('hist.tikz', 'showInfo', false, ...
         'parseStrings',false,'standalone', true, ...
         'height', '5cm', 'width','6cm');
-```
+{% endhighlight %}
 
 The generated pdf figure will be somehow different from what we expect:
 ![hist.png]({{ BASE_PATH }}/assets/images/tikz2/hist.png){: .img-fluid .bg-white}
 
 This is a documented [bug](https://github.com/nschloe/matlab2tikz/issues/294) in matlab2tikz. In most cases, it can be mediated by using the *bar* command instead of the *hist* for drawing the figure:
 
-``` matlab
+{% highlight matlab %}
 x=randn(1000,1);
 [nelements,centers]=hist(x);
 bar(centers, nelements);
 matlab2tikz('hist_bar.tikz', 'showInfo', false, ...
         'parseStrings',false,'standalone', true, ...
         'height', '5cm', 'width','6cm');
-```
+{% endhighlight %}
 
 So that we get the expected figure:
 ![hist_bar.png]({{ BASE_PATH }}/assets/images/tikz2/hist_bar.png){: .img-fluid .bg-white}
