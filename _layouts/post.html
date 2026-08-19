@@ -4,60 +4,68 @@ name : bootstrap
 layout: default
 ---
 {% include JB/setup %}
-<h2>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}
-  <small>
-    {% if page.date %}<span>{{ page.date | date_to_long_string }}</span>{% endif %}
-  </small>
-</h2>
-<div class="container-fluid col-md-8">
-  {{ content }}
+<div class="wrap-narrow">
+  <article>
+    <header class="post-header">
+      <h1>{{ page.title }}</h1>
+      {% if page.tagline %}<span class="tagline">{{ page.tagline }}</span>{% endif %}
+      {% if page.date %}
+      <time class="post-meta" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date_to_long_string }}</time>
+      {% endif %}
+    </header>
+
+    <div class="post-content prose">
+      {{ content }}
+    </div>
+  </article>
+
+  {% unless page.categories == empty %}
+  <ul class="tag_box inline">
+    <li><i class="fa fa-folder-open" aria-hidden="true"></i><span class="visually-hidden">Categories</span></li>
+    {% assign categories_list = page.categories %}
+    {% include JB/categories_list %}
+  </ul>
+  {% endunless %}
+
+  {% unless page.tags == empty %}
+  <ul class="tag_box inline">
+    <li><i class="fa fa-tags" aria-hidden="true"></i><span class="visually-hidden">Tags</span></li>
+    {% assign tags_list = page.tags %}
+    {% include JB/tags_list %}
+  </ul>
+  {% endunless %}
+
+  <nav aria-label="Post navigation">
+    <ul class="post-nav">
+      {% if page.previous %}
+      <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo;
+          Previous</a></li>
+      {% else %}
+      <li class="prev disabled"><span>&larr; Previous</span></li>
+      {% endif %}
+      <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
+      {% if page.next %}
+      <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &raquo;</a></li>
+      {% else %}
+      <li class="next disabled"><span>Next &rarr;</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <hr>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    {% include JB/is_production %}
+    {% if is_production == false %} var disqus_developer = 1; {% endif %}
+    var disqus_shortname = '{{ site.disqus.short_name }}';
+    {% if page.wordpress_id %} var disqus_identifier = '{{page.wordpress_id}} {{site.production_url}}/?p={{page.wordpress_id}}'; {% endif %}
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
 </div>
-
-{% unless page.categories == empty %}
-<ul class="tag_box inline">
-  <li><i class="fa fa-folder-open"></i></li>
-  {% assign categories_list = page.categories %}
-  {% include JB/categories_list %}
-</ul>
-{% endunless %}
-
-{% unless page.tags == empty %}
-<ul class="tag_box inline">
-  <li><i class="fa fa-tags"></i></li>
-  {% assign tags_list = page.tags %}
-  {% include JB/tags_list %}
-</ul>
-{% endunless %}
-
-<hr>
-<ul class="pagination">
-  {% if page.previous %}
-  <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo;
-      Previous</a></li>
-  {% else %}
-  <li class="prev disabled"><span>&larr; Previous</span></li>
-  {% endif %}
-  <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
-  {% if page.next %}
-  <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &raquo;</a></li>
-  {% else %}
-  <li class="next disabled"><span>Next &rarr;</span></li>
-  {% endif %}
-</ul>
-<hr>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  {% include JB/is_production %}
-  {% if is_production == false %} var disqus_developer = 1; {% endif %}
-  var disqus_shortname = '{{ site.disqus.short_name }}';
-  {% if page.wordpress_id %} var disqus_identifier = '{{page.wordpress_id}} {{site.production_url}}/?p={{page.wordpress_id}}'; {% endif %}
-  /* * * DON'T EDIT BELOW THIS LINE * * */
-  (function () {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-    Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

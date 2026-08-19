@@ -1,21 +1,19 @@
 ---
 ---
-<div class="row">
-  <div class="col-md-12">
-<h4>{% if entry.url %}<a href="{{ entry.url }}">{% endif %}{{ entry.title }}
-  ({% if entry.month %}{{ entry.month | capitalize | append: " "}}{% endif %}{{ entry.year }}){% if entry.url %}</a>{% endif %}</h4>
-<b>{{ entry.author }}</b><br/>
-{% if entry.journal %}
-<i>{{ entry.journal }}</i><br/>
-{% else if entry.booktitle %}
-<i><b>{{ entry.booktitle }}</b></i><br/>
-{{ entry.address }}<br/>
-{% endif %}
-<!-- {% if entry.doi %}
-DOI : <a href="http://doi.org/{{ entry.doi }}">{{ entry.doi }}</a><br/>
-{% endif %} -->
-</div>
-{% if entry.abstract %}
-<p>{{ entry.abstract }}</p>
-{% endif %}
-</div>
+<article class="bib-entry">
+  <h4 class="bib-title">{% if entry.url %}<a href="{{ entry.url }}">{% endif %}{{ entry.title }}{% if entry.url %}</a>{% endif %}
+    <span class="bib-year">({% if entry.month %}{{ entry.month | capitalize | append: " " }}{% endif %}{{ entry.year }})</span>
+  </h4>
+  <p class="bib-authors">{{ entry.author }}</p>
+  {% if entry.journal %}
+  <p class="bib-venue"><em>{{ entry.journal }}</em></p>
+  {% elsif entry.booktitle %}
+  <p class="bib-venue"><strong>{{ entry.booktitle }}</strong>{% if entry.address %} &mdash; {{ entry.address }}{% endif %}</p>
+  {% endif %}
+  {% if entry.abstract %}
+  <details class="bib-abstract">
+    <summary>Abstract</summary>
+    <p>{{ entry.abstract }}</p>
+  </details>
+  {% endif %}
+</article>

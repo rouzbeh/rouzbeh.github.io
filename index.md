@@ -1,8 +1,10 @@
 ---
 layout: home
 title: Ali Neishabouri
+nav_title: Home
 tagline : homepage
 group: navigation
+icon: fa-house
 pageorder: 0
 ---
 
@@ -12,16 +14,12 @@ I currently lead data science at ActiGraph, where I focus on deploying based on 
 
 I previously co-founded SPiKE.AI, worked on quantization and CNN acceleration at Mipsology, and held research roles at Imperial College London and UCL. I’m especially passionate about bridging the gap between research and engineering — building models that don’t just work in notebooks, but scale, integrate, and deliver impact.
 
-<div class="col-lg-6 col-md-6 col-sm-12">
-<h2>Contact</h2>
-<p class="voffset2">
-  <a href="http://keys.gnupg.net/pks/lookup?op=get&search=0x422E04CE2795646B">
-    <i class="fa fa-lock"></i>
-    Public key
-  </a><br/>
-  <a href="https://github.com/rouzbeh"><i class="fab fa-github-square"></i> @rouzbeh</a><br/>
-  <i class="fa fa-chevron-right"></i>
-  <a href="https://scholar.google.com/citations?user=1Enh_KsAAAAJ">
-    Google Scholar
-  </a>
-</p>
+<h2>Elsewhere</h2>
+<ul class="contact-list">
+  <li>
+    <a href="https://github.com/rouzbeh"><i class="fab fa-github" aria-hidden="true"></i> @rouzbeh</a>
+  </li>
+  <li>
+    <a href="https://scholar.google.com/citations?user=1Enh_KsAAAAJ"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Google Scholar</a>
+  </li>
+</ul>

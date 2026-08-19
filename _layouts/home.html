@@ -4,19 +4,15 @@ name : bootstrap
 layout: default
 ---
 {% include JB/setup %}
-<div class="col-md-8 col-sm-12 col-lg-6 mx-auto">
-  <div class="row">
-    <div class="card">
-      <div class="card-body">
-        <div class="row g-0">
-          <div class="col-sm-4 px-3">
-            <img src="{{ BASE_PATH }}/assets/images/portrait.jpg" class="rounded-circle img-fluid"
-              title="Ali Neishabouri" alt="Photo" />
-          </div>
-          <div class="col-sm-8">
-            {{ content }}
-          </div>
-        </div>
+<div class="wrap-narrow">
+  <div class="home-card">
+    <div class="row g-4 align-items-start">
+      <div class="col-sm-4 text-center">
+        <img src="{{ BASE_PATH }}/assets/images/portrait.jpg" class="home-portrait" title="{{ site.author }}"
+          alt="Portrait of {{ site.author }}" />
+      </div>
+      <div class="col-sm-8 home-intro">
+        {{ content }}
       </div>
     </div>
   </div>

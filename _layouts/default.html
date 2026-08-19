@@ -8,10 +8,8 @@ name : bootstrap
 
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>{{ page.title }}
-  </title>
+  <title>{% if page.title and page.title != site.title and page.title != site.author %}{{ page.title }} &middot; {{ site.author }}{% else %}{{ site.title }}{% endif %}</title>
   {% if page.description %}
   <meta name="description" content="{{ page.description }}" />{% endif %}
   <meta name="author" content="{{ site.author }}" />
@@ -23,11 +21,11 @@ name : bootstrap
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
-  <link href="{{ BASE_PATH }}/assets/css/style.css" rel="stylesheet" />
-
   <!-- Custom styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"
     integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous" />
+
+  <link href="{{ BASE_PATH }}/assets/css/style.css" rel="stylesheet" />
 
   <!-- atom & rss feed -->
   <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate"
@@ -38,18 +36,19 @@ name : bootstrap
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+  <nav class="navbar navbar-expand-lg site-nav" data-bs-theme="dark">
+    <div class="container-fluid wrap">
+      <a class="navbar-brand" href="{{ HOME_PATH }}">{{ site.author }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% include JB/sort_collection collection=site.pages sort_by="pageorder" %}
           {% assign pages_list = sort_result %}
           {% assign group = 'navigation' %}
+          {% assign pages_list_style = 'nav' %}
           {% include JB/pages_list %}
 
         </ul>
@@ -57,9 +56,21 @@ name : bootstrap
     </div>
   </nav>
 
-  <div class="container-fluid justify-content-center">
+  <main class="site-main">
     {{ content }}
-  </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; {{ site.time | date: "%Y" }} {{ site.author }}</p>
+      <ul>
+        <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
+        <li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}">Tags</a></li>
+        <li><a href="{{ BASE_PATH }}{{ site.JB.rss_path }}">RSS</a></li>
+        <li><a href="{{ BASE_PATH }}{{ site.JB.atom_path }}">Atom</a></li>
+      </ul>
+    </div>
+  </footer>
 
 </body>
 
