@@ -8,8 +8,11 @@ layout: default
   <div class="home-card">
     <div class="row g-4 align-items-start">
       <div class="col-sm-4 text-center">
-        <img src="{{ BASE_PATH }}/assets/images/portrait.jpg" class="home-portrait" title="{{ site.author }}"
-          alt="Portrait of {{ site.author }}" />
+        <!-- img-fluid/rounded-circle are Bootstrap fallbacks: if style.css ever
+             fails to load, the portrait still stays constrained rather than
+             rendering at full natural size over the text. -->
+        <img src="{{ BASE_PATH }}/assets/images/portrait.jpg" class="home-portrait img-fluid rounded-circle"
+          title="{{ site.author }}" alt="Portrait of {{ site.author }}" />
       </div>
       <div class="col-sm-8 home-intro">
         {{ content }}

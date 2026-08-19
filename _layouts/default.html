@@ -25,7 +25,12 @@ name : bootstrap
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"
     integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous" />
 
-  <link href="{{ BASE_PATH }}/assets/css/style.css" rel="stylesheet" />
+  <!-- ?v= is the build timestamp: GitHub Pages serves these with max-age=600
+       and no filename fingerprint, so without it a browser can pair freshly
+       fetched HTML with a stale cached stylesheet and render the page broken. -->
+  {% assign css_version = site.time | date: "%s" %}
+  <link href="{{ BASE_PATH }}/assets/css/emacs.css?v={{ css_version }}" rel="stylesheet" />
+  <link href="{{ BASE_PATH }}/assets/css/style.css?v={{ css_version }}" rel="stylesheet" />
 
   <!-- atom & rss feed -->
   <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate"

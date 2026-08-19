@@ -1,4 +1,6 @@
-@import "emacs.css";
+/* emacs.css (syntax highlighting) is linked separately in the layout head.
+   An @import here would serialise the two requests and, more importantly,
+   keep it outside the cache-busting applied to linked stylesheets. */
 
 /* ==========================================================================
    Design tokens
