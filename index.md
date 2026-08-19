@@ -19,7 +19,7 @@ I previously co-founded SPiKE.AI, worked on quantization and CNN acceleration at
     <i class="fa fa-lock"></i>
     Public key
   </a><br/>
-  <a href="http://github.com/rouzbeh"><i class="fab fa-github-square"></i> @rouzbeh</a><br/>
+  <a href="https://github.com/rouzbeh"><i class="fab fa-github-square"></i> @rouzbeh</a><br/>
   <i class="fa fa-chevron-right"></i>
   <a href="https://scholar.google.com/citations?user=1Enh_KsAAAAJ">
     Google Scholar

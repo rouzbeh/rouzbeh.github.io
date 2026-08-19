@@ -15,7 +15,7 @@ layout: default
 
 {% unless page.categories == empty %}
 <ul class="tag_box inline">
-  <li><i class="glyphicon glyphicon-open"></i></li>
+  <li><i class="fa fa-folder-open"></i></li>
   {% assign categories_list = page.categories %}
   {% include JB/categories_list %}
 </ul>
@@ -23,7 +23,7 @@ layout: default
 
 {% unless page.tags == empty %}
 <ul class="tag_box inline">
-  <li><i class="glyphicon glyphicon-tags"></i></li>
+  <li><i class="fa fa-tags"></i></li>
   {% assign tags_list = page.tags %}
   {% include JB/tags_list %}
 </ul>
@@ -35,14 +35,14 @@ layout: default
   <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo;
       Previous</a></li>
   {% else %}
-  <li class="prev disabled"><a>&larr; Previous</a></li>
+  <li class="prev disabled"><span>&larr; Previous</span></li>
   {% endif %}
   <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
   {% if page.next %}
   <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &raquo;</a></li>
   {% else %}
-  <li class="next disabled"><a>Next &rarr;</a>
-    {% endif %}
+  <li class="next disabled"><span>Next &rarr;</span></li>
+  {% endif %}
 </ul>
 <hr>
 <div id="disqus_thread"></div>
@@ -58,6 +58,6 @@ layout: default
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
     Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

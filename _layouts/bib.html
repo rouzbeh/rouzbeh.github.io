@@ -2,8 +2,8 @@
 ---
 <div class="row">
   <div class="col-md-12">
-<h4><a href="{{ entry.url }}">{{ entry.title }}
-  ({% if entry.month %}{{ entry.month | capitalize | append: " "}}{% endif %}{{ entry.year }})</a></h4>
+<h4>{% if entry.url %}<a href="{{ entry.url }}">{% endif %}{{ entry.title }}
+  ({% if entry.month %}{{ entry.month | capitalize | append: " "}}{% endif %}{{ entry.year }}){% if entry.url %}</a>{% endif %}</h4>
 <b>{{ entry.author }}</b><br/>
 {% if entry.journal %}
 <i>{{ entry.journal }}</i><br/>

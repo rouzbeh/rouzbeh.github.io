@@ -1,11 +1,9 @@
 source "https://rubygems.org"
 
-#gem "github-pages", "~> 232", group: :jekyll_plugins
 gem "html-proofer"
 gem "jekyll"
 gem "jekyll-sitemap", group: :jekyll_plugins
-gem "nokogiri", "~> 1.16.5"
-gem "pygments.rb"
+gem "nokogiri"
 gem "webrick", "~> 1.8"
 gem 'base64'
 gem 'csv'
