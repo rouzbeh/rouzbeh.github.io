@@ -8,11 +8,11 @@ icon: fa-house
 pageorder: 0
 ---
 
-I’m a research engineer and data scientist with a background in neuroscience, machine learning, and systems-level software. I build AI systems that are grounded in science but engineered for the real world — from optimizing deep learning models on custom hardware to developing production-grade ML pipelines for mobile and wearable platforms.
+I’m a data scientist and engineer who came to software through neuroscience. My PhD, at Imperial College London, asked how axons carry information under four hard physical constraints: time, noise, energy, and size. That question only yields to a mix of theory, simulation, and careful engineering, and I’ve worked much the same way ever since.
 
-I’m currently a senior software engineer at Dataiku. Before that, I led data science at ActiGraph, where I focused on deploying algorithms based on heuristics, machine learning, and deep learning to extract digital health insights from sensor data. Earlier, I headed data science for Biogen’s Konectom platform, where I led the development of smartphone-based digital measures to monitor neurological conditions.
+I’m currently a senior software engineer at Dataiku. Before that I led data science at ActiGraph, building heuristic, machine learning, and deep learning algorithms that turn raw sensor data into digital health measures. Earlier I headed data science for Biogen’s Konectom platform, developing smartphone-based measures to monitor neurological disease.
 
-I previously co-founded SPiKE.AI, worked on quantization and CNN acceleration at Mipsology, and held research roles at Imperial College London and UCL. I’m especially passionate about bridging the gap between research and engineering — building models that don’t just work in notebooks, but scale, integrate, and deliver impact.
+Before moving into digital health I co-founded SPiKE.AI, and worked at Mipsology on quantization and CNN acceleration. I also held post-doctoral research posts at Imperial College London and UCL.
 
 <h2>Elsewhere</h2>
 <ul class="contact-list">
