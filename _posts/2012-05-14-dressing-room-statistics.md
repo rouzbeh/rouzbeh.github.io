@@ -23,11 +23,13 @@ As you can see, the number of articles finally kept does not really look like th
 So we know that some people go in with a lot of clothes, and some with very few. We also know that the number of articles kept obeys the normal distribution. But what we would like to know is how does the number of articles brought in correlate with the number of articles brought out. In other words, we want to know if we can predict how many articles of clothing someone will end up buying based on how many the bring into the dressing room.
 
 We can accomplish this by quite easily. In the following graph, you can see the mean number of articles kept, as a function of number of articles brought in the dressing room :
+
 ![Kept/Brought in]({{ BASE_PATH }}/assets/images/dressing/means.png){: .img-fluid .bg-white }
 
 The numbers fit nicely on a line, with a slope of 0.28 (drawn in red). Roughly speaking, for every 100 items tried on in that shop’s dressing room, only 28 are bought. The remaining 72 have to be put back on shelves by the staff. We can also see that the number of clothe brought in can be a pretty good indicator of how many will be bought. The more items brought in, the more items are kept.
 
 But, while we were recording the data, we actually noticed a pretty large number of people who actually did not seem to want to buy anything. They seemed just to be interested in trying clothes with their friends, and giving them all back afterwards. And we wondered, do they somehow skew our data? Is there something to be learnt by eliminating them from our dataset? Have a look at this next graph.
+
 ![Kept/Brought in]({{ BASE_PATH }}/assets/images/dressing/means2.png){: .img-fluid .bg-white }
 
 Here you can see the same data than on the last graph, but we have added another curve. In green you can see the mean number of articles bought if we exclude those who do not buy anything. There is something funny about this graph. It seems that people who bring in 4 items actually end up buying less than people who brought in only 3. I do not know if there is any truth behind this observation, or if it is just due to a small number of samples. other than that, the trend of "The more you bring in, the more you buy" seems to hold.

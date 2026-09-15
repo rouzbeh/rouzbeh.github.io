@@ -10,7 +10,7 @@ name : bootstrap
   <meta charset="utf-8" />
 
   <title>{% if page.title and page.title != site.title and page.title != site.author %}{{ page.title }} &middot; {{ site.author }}{% else %}{{ site.title }}{% endif %}</title>
-  {% if page.description %}
+  {% if page.description and page.description != "" %}
   <meta name="description" content="{{ page.description }}" />{% endif %}
   <meta name="author" content="{{ site.author }}" />
 
@@ -29,7 +29,8 @@ name : bootstrap
        and no filename fingerprint, so without it a browser can pair freshly
        fetched HTML with a stale cached stylesheet and render the page broken. -->
   {% assign css_version = site.time | date: "%s" %}
-  <link href="{{ BASE_PATH }}/assets/css/emacs.css?v={{ css_version }}" rel="stylesheet" />
+  <!-- syntax.css is generated, not edited: bundle exec rougify style github -->
+  <link href="{{ BASE_PATH }}/assets/css/syntax.css?v={{ css_version }}" rel="stylesheet" />
   <link href="{{ BASE_PATH }}/assets/css/style.css?v={{ css_version }}" rel="stylesheet" />
 
   <!-- atom & rss feed -->

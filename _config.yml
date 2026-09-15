@@ -34,6 +34,7 @@ plugins:
   - jekyll/scholar
   - jekyll-sitemap
   - jekyll-figure
+  - jekyll-redirect-from
 
 scholar:
   style: apa

@@ -14,14 +14,14 @@ This post is a continuation of [creating publication quality figures]({{ BASE_PA
 ### Bar graphs
 Bar graphs generated using different commands are treated differently. Exporting a simple bar graph created by:
 
-{% highlight matlab %}
+```matlab
 x=[1,2,3];
 y=x;
 bar(x,y);
 matlab2tikz('bar.tikz', 'showInfo', false, ...
         'parseStrings',false,'standalone', true, ...
         'height', '5cm', 'width','6cm');
-{% endhighlight %}
+```
 
 results in the following compiled pdf figure:
 
@@ -29,29 +29,31 @@ results in the following compiled pdf figure:
 
 But, if we use a command such as *hist*:
 
-{% highlight matlab %}
+```matlab
 x=randn(1000,1);
 hist(x);
 matlab2tikz('hist.tikz', 'showInfo', false, ...
         'parseStrings',false,'standalone', true, ...
         'height', '5cm', 'width','6cm');
-{% endhighlight %}
+```
 
 The generated pdf figure will be somehow different from what we expect:
+
 ![hist.png]({{ BASE_PATH }}/assets/images/tikz2/hist.png){: .img-fluid .bg-white}
 
 This is a documented [bug](https://github.com/nschloe/matlab2tikz/issues/294) in matlab2tikz. In most cases, it can be mediated by using the *bar* command instead of the *hist* for drawing the figure:
 
-{% highlight matlab %}
+```matlab
 x=randn(1000,1);
 [nelements,centers]=hist(x);
 bar(centers, nelements);
 matlab2tikz('hist_bar.tikz', 'showInfo', false, ...
         'parseStrings',false,'standalone', true, ...
         'height', '5cm', 'width','6cm');
-{% endhighlight %}
+```
 
 So that we get the expected figure:
+
 ![hist_bar.png]({{ BASE_PATH }}/assets/images/tikz2/hist_bar.png){: .img-fluid .bg-white}
 
 ### Figure alignment
@@ -86,6 +88,7 @@ The width and height variables set when running matlab2tikz refer to the width a
 ```
 
 Regenerating our latex document now results in perfectly aligned figures:
+
 ![doc.png]({{ BASE_PATH }}/assets/images/tikz2/doc.png){: .img-fluid .bg-white}
 
 ### Subfigures
@@ -93,12 +96,12 @@ There are two ways to generate subfigure using this method.
 
 * In Matlab
 
-We can generate a figure with subfigures in Matlab and save it as one figure.
+  We can generate a figure with subfigures in Matlab and save it as one figure.
 
 * In LaTeX
 
-The other solution is to export each subfigure independently, and put them together in Matlab. I personally prefer this method
-because it gives me the highest amount of control over the presentation of subfigure, and allows fancy tricks such as referencing subfigures.
+  The other solution is to export each subfigure independently, and put them together in LaTeX. I personally prefer this method
+  because it gives me the highest amount of control over the presentation of subfigure, and allows fancy tricks such as referencing subfigures.
 
 An example of the second method is already shown in the previous section. We can improve it by making sure that subfigure numbers are written as required by most journals. I found the following command on [this great page](http://www.latex-community.org/know-how/latex/51-latex-math-science/280-formatting-latex-articles-for-biology-journals).
 
@@ -113,6 +116,7 @@ An example of the second method is already shown in the previous section. We can
 ```
 
 Adding this command right before our figure in the LaTeX document results in:
+
 ![doc1.png]({{ BASE_PATH }}/assets/images/tikz2/doc2.png){: .img-fluid .bg-white}
 
 ### Cache generated figures
@@ -128,7 +132,7 @@ Create a folder next to your LaTeX document called autofigs, and add this line t
 \tikzexternalize[prefix=autofigs/]
 ```
 
-And make sure to compile the resulting document using the *&#x2013;shell-escape* option:
+And make sure to compile the resulting document using the `--shell-escape` option:
 
 ``` bash
 pdflatex --shell-escape doc.tex

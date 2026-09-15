@@ -8,6 +8,7 @@ gem "webrick", "~> 1.8"
 gem 'base64'
 gem 'csv'
 gem 'jekyll-figure', group: :jekyll_plugins
+gem 'jekyll-redirect-from', group: :jekyll_plugins
 gem 'jekyll-scholar', group: :jekyll_plugins
 gem 'kramdown-parser-gfm'
 gem 'logger'

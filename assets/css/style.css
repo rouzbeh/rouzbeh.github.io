@@ -1,7 +1,3 @@
-/* emacs.css (syntax highlighting) is linked separately in the layout head.
-   An @import here would serialise the two requests and, more importantly,
-   keep it outside the cache-busting applied to linked stylesheets. */
-
 /* ==========================================================================
    Design tokens
    Palette keeps the site's warm brown + sage identity. Link and meta colours
@@ -421,25 +417,27 @@ img {
   color: var(--brand-deep);
 }
 
+/* The box goes on the <pre> alone, so a block looks the same whether or not
+   Rouge highlighted it, and its wrapper divs never draw a second box. */
 .post-content pre {
   margin: var(--space-5) 0;
-}
-
-.post-content .highlighter-rouge,
-.post-content div[class*="language-"] {
-  margin: var(--space-5) 0;
-}
-
-.post-content .highlight,
-.post-content pre.highlight {
-  background: var(--surface-sunken);
+  padding: var(--space-4);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: var(--space-4);
   overflow-x: auto;
 }
 
-.post-content .highlight code,
+/* Highlighted blocks take their colours from syntax.css; only plain ones
+   need the site's. Rouge's theme also paints the div.highlight wrapped
+   around the <pre>, so its corners are rounded to match. */
+.post-content pre:not(.highlight) {
+  background: var(--surface-sunken);
+}
+
+.post-content .highlight {
+  border-radius: var(--radius-sm);
+}
+
 .post-content pre code {
   background: none;
   border: 0;

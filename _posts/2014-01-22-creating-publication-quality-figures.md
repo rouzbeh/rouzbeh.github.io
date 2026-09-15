@@ -3,7 +3,7 @@ layout: post
 title: "Creating publication quality figures"
 description: ""
 category: Tips
-redirect-from:
+redirect_from:
 - /Tips/2014/01/22/creating-publication-quality-figures/
 tags: [Matlab, Latex, Tikz, Figure]
 ---
@@ -24,6 +24,7 @@ ylabel('Y [s]')
 saveas(h,'fig1.jpg')
 ```
 Which results in the following image.
+
 ![fig1]({{ BASE_PATH }}/assets/images/tikz/fig1.jpg){: .img-fluid .bg-white }
 
 This figure is certainly fine, but the fonts are too small, not to mention ugly, and the line is too thin. This can of course be remedied by using the export setup feature before saving the figure. Loading the default presentation parameters, for instance, and saving as before, gives us the following image.
@@ -52,6 +53,7 @@ The great advantage of vector formats over raster formats is the the former can 
 ![fig4]({{ BASE_PATH }}/assets/images/tikz/fig4.png){: .img-fluid .bg-white }
 
 Those jagged line (steps) are due to the resizing of the image. We can avoid them by storing our figure in a vectorial format, such as svg. Matlab can not do this out of the box, but we can use an external script for this. One such script can be found [here](http://www.mathworks.com/matlabcentral/fileexchange/7401-scalable-vector-graphics-svg-export-of-figures). The same figure saved as an svg image looks like this:
+
 ![fig5]({{ BASE_PATH }}/assets/images/tikz/fig5.svg){: .img-fluid .bg-white }
 
 So here we have it. Make Matlab figures. Set the right options (remove all text, change line width, etc.). Save them as vector graphics (*eps* is fine, and included in matlab). Add text accordingly. If you are using Windows, you can also copy and paste Matlab figures directly into powerpoint or word. This works for the most part pretty well and you can also safely resize the resulting figure directly in powerpoint. I don't use windows, so I usually used the eps format.
@@ -132,20 +134,22 @@ table[row sep=crcr]{
 
 This is actually human readable. You could, if you wanted to, dig in and change anything about the figure. Since it is a plain-text file, you could also automate these changes. Imagine that instead of putting voltage on one of your axes, you wanted to use potential. You could do that for all the figures in one folder by running a command like:
 
-``` Bash
+``` bash
 sed 's/voltage/potential/g' *.tikz
 ```
 
 We can also use all sorts of tools that work nicely with plain-text files, such as version control systems. The tikz file can be converted into a pdf file by running on the command line (not in matlab):
-``` Bash
+``` bash
 lualatex fig6.tikz
 ```
 
 This creates a pdf [file]({{ BASE_PATH }}/assets/images/tikz/fig6.pdf), that looks like this:
+
 ![fig6]({{ BASE_PATH }}/assets/images/tikz/fig6.png){: .img-fluid .bg-white }
 
 Crucially, changing the width and height on the tikz file, and regenerating the pdf file results in a figure that looks as good. If
 we divide the height by 2, we get the following [figure]({{ BASE_PATH }}/assets/images/tikz/fig7.pdf):
+
 ![fig7]({{ BASE_PATH }}/assets/images/tikz/fig7.png){: .img-fluid .bg-white }
 
 The width of the line, the shape and the placement of text labels are all preserved perfectly, and of course, the pdf being a vectorial format, there is no jaggedness or steps.
@@ -234,7 +238,8 @@ We cannot directly compile this file into a pdf document. Instead, this file can
 \end{document}
 ```
 
-There are a few remarkable things about this document. First of all, notice that we define parameter for the figure inside the LaTeX document. For instance, we decide to use a sans-serif font for all the figures in the document, as opposed to the one used in the standalone case. We also define two latex variables, *\figrelength* and *\figureheight*, using the *\newlength* command. We can change the values of these variable before we include each figure (using *\input*). This is how we can create figures with different heights from the same original tikz file. Compiling this LaTeX document creates this pdf [file]({{ BASE_PATH }}/assets/images/tikz/fig8.pdf):
+There are a few remarkable things about this document. First of all, notice that we define parameter for the figure inside the LaTeX document. For instance, we decide to use a sans-serif font for all the figures in the document, as opposed to the one used in the standalone case. We also define two latex variables, *\figurewidth* and *\figureheight*, using the *\newlength* command. We can change the values of these variable before we include each figure (using *\input*). This is how we can create figures with different heights from the same original tikz file. Compiling this LaTeX document creates this pdf [file]({{ BASE_PATH }}/assets/images/tikz/fig8.pdf):
+
 ![fig7]({{ BASE_PATH }}/assets/images/tikz/fig8.png){: .img-fluid .bg-white }
 
 Notice how not only do we have the same figure with two different sizes although we used the same tikz file, but the two figures are both perfectly typeset. Additionally, the lower figure has more ticks on the Y-axis, since its height allows enough space for the additional ticks.
