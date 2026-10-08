@@ -39,6 +39,55 @@ name : bootstrap
   <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate"
     title="Sitewide RSS Feed" />
 
+  {% if content contains 'language-mermaid' %}
+  <!-- Diagrams: ```mermaid blocks are rendered in the browser, so nothing has
+       to be installed on the build worker. Loaded only on pages that have a
+       diagram. Until it runs (and if it never does, because the CDN is blocked
+       or JavaScript is off) the block stays on the page as its source text. -->
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs";
+
+    // Rouge has no mermaid lexer, so these blocks arrive as plain <pre><code>.
+    const blocks = [...document.querySelectorAll("code.language-mermaid")];
+    const style = getComputedStyle(document.documentElement);
+    const token = (name) => style.getPropertyValue(name).trim();
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "base",
+      fontFamily: token("--font-sans"),
+      themeVariables: {
+        background: token("--surface"),
+        primaryColor: token("--surface-sunken"),
+        primaryTextColor: token("--text"),
+        primaryBorderColor: token("--border-strong"),
+        secondaryColor: token("--surface"),
+        tertiaryColor: token("--ground"),
+        lineColor: token("--text-muted"),
+        fontSize: "15px",
+      },
+    });
+
+    // Each block is swapped for a host element and rendered on its own, so a
+    // diagram with a syntax error puts its own source back and leaves the
+    // other diagrams on the page alone.
+    for (const code of blocks) {
+      const original = code.closest(".highlighter-rouge") || code.parentElement;
+      const host = document.createElement("div");
+      host.className = "mermaid";
+      host.textContent = code.textContent;
+      original.replaceWith(host);
+
+      try {
+        await mermaid.run({ nodes: [host] });
+      } catch (error) {
+        host.replaceWith(original);
+        console.error("Mermaid failed to render a diagram:", error);
+      }
+    }
+  </script>
+  {% endif %}
+
 </head>
 
 <body>

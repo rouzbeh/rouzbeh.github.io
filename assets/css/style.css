@@ -176,6 +176,7 @@ img {
 .prose > .highlighter-rouge,
 .prose > div[class*="language-"],
 .prose > .table-wrap,
+.prose > .mermaid,
 .prose > blockquote,
 .prose > p:has(> img) {
   max-width: 100%;
@@ -445,6 +446,18 @@ img {
   color: inherit;
   font-size: 0.875rem;
   line-height: 1.55;
+}
+
+/* Mermaid diagrams, rendered in the browser by the loader in the layout head.
+   The SVG scales down on narrow screens instead of forcing the page sideways. */
+.post-content .mermaid {
+  margin: var(--space-6) 0;
+  text-align: center;
+}
+
+.post-content .mermaid svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Tables scroll rather than forcing the page sideways. */
